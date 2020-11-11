@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:winkels_customer/data/api/api_client.dart';
+import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/data/models/base_product.dart';
-import 'package:winkels_customer/data/repository/vendor_repository.dart';
+import 'package:winkels_customer/data/repository/Repository.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/product_widget.dart';
 import 'package:winkels_customer/ui/vendor/product_list_cubit.dart';
 
 class ProductListPage extends StatelessWidget {
-  final cubit = ProductListCubit(VendorRepository(ApiClient()));
+  final cubit = ProductListCubit(GetIt.I.get<Repository>());
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/core/app_colors.dart';
-import 'package:winkels_customer/ui/login/login_page.dart';
-import 'package:winkels_customer/ui/vendor/product_list_page.dart';
+import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
-void main() {
+import 'core/di/app_module.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
+  // await EnvironmentConfiguration.run(); // Init env configuration
+  await AppModule.initialise(); // Inject modules
+  // await Firebase.initializeApp(); // Init Firebase
+
   runApp(MyApp());
 }
 
@@ -16,7 +22,11 @@ class MyApp extends StatelessWidget {
       title: 'Winkels',
       darkTheme: darkTheme,
       theme: lightTheme,
-      home: ProductListPage(),
+      initialRoute: '/',
+      routes: {
+        '/': (BuildContext context) => SplashPage(),
+        '/welcome': (BuildContext context) => WelcomePage(),
+      },
     );
   }
 }

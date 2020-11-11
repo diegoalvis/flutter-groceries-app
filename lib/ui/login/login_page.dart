@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:winkels_customer/data/api/api_client.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ApiClient().getProducts("sad");
     return Scaffold(
         body:
 

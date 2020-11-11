@@ -6,16 +6,16 @@ class WelcomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/welcome_background.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/welcome_background.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Center(
         child: Column(children: [
           Spacer(flex: 2),
-          Icon(Icons.shopping_basket),
+          Image.asset("assets/app_icon.png"),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Text("Bienvenido\na Winkels", textAlign: TextAlign.center, style: TextStyle(fontSize: 34)),

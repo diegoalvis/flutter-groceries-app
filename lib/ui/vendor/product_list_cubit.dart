@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:winkels_customer/data/repository/vendor_repository.dart';
+import 'package:winkels_customer/data/repository/Repository.dart';
 
 class ProductListCubit extends Cubit<ProductListState> {
-  final VendorRepository _repository;
+  final Repository _repository;
 
   ProductListCubit(this._repository) : super(ProductListState(StateType.initial));
 
