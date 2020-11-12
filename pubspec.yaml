@@ -35,6 +35,10 @@ dependencies:
   firebase_auth: ^0.18.3
 
 
+  country_icons: ^1.1.1
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -47,7 +51,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - welcome_background.png
-    - app_icon.png
-    - winkels_letters.png
+    - assets/images/
+    - assets/icons/
 

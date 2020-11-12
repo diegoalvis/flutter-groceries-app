@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/core/app_colors.dart';
+import 'package:winkels_customer/ui/screens/number_phone_page.dart';
 import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       initialRoute: '/',
       routes: {
-        '/': (BuildContext context) => WelcomePage(),
+        '/': (BuildContext context) => NumberPhonePage(),
         // '/welcome': (BuildContext context) => WelcomePage(),
       },
     );
