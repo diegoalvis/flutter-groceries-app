@@ -16,56 +16,49 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-          child: Stack(
-            children: [
-              Container(
-                color: Colors.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.location_on),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('La Felicidad, Bogotá'),
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.transparent,
-                        ),
-                      ],
-                    ),
-                    Text(
-                      'Categorias',
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
+                    Icon(Icons.location_on),
                     SizedBox(
-                      height: 15,
+                      width: 10,
                     ),
-                    SearchTextField(
-                      hintText: 'Buscar Categoria',
+                    Text('La Felicidad, Bogotá'),
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.transparent,
                     ),
-                    CategoryCard(
-                      text: 'Viveres',
-                      imageAsset: 'assets/icons/ic_viveres.png',
-                    ),
-                    StoreCard(
-                      nameStore: 'Tienda 1',
-                    ),
-                    ItemCard(
-                      text: 'Huevos Blancos',
-                      imageAsset: 'assets/images/img_egg.png',
-                    )
                   ],
                 ),
-              ),
-            ],
+                Text(
+                  'Categorias',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SearchTextField(
+                  hintText: 'Buscar Categoria',
+                ),
+                CategoryCard(
+                  text: 'Viveres',
+                  imageAsset: 'assets/icons/ic_viveres.png',
+                ),
+                StoreCard(
+                  nameStore: 'Tienda 1',
+                ),
+                ItemCard(
+                  text: 'Huevos Blancos',
+                  imageAsset: 'assets/images/img_egg.png',
+                )
+              ],
+            ),
           ),
         ),
       ),

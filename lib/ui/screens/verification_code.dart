@@ -12,23 +12,21 @@ class VerificationCodePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            color: Colors.white,
-            height: height,
-            width: width,
-          ),
-
           Padding(
             padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Container(height: 150,),
+                Container(
+                  height: 150,
+                ),
                 Text(
                   'Ingresa el codigo de 4-digitos',
                 ),
-                SizedBox(height: 40,),
+                SizedBox(
+                  height: 40,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -39,18 +37,16 @@ class VerificationCodePage extends StatelessWidget {
                           child: Form(
                             child: TextFormField(
                               maxLength: 4,
-                              keyboardType : TextInputType.number,
+                              keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                               ],
-
                               validator: (value) {
-                                if (value.length == 4 ) {
+                                if (value.length == 4) {
                                   return null;
                                 }
                                 return 'Número incorrecto';
                               },
-
                             ),
                           ),
                         ),
