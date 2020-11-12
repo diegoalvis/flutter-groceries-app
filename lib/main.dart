@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/screens/phone_number_page.dart';
+import 'package:winkels_customer/ui/screens/verification_code.dart';
 import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
@@ -19,15 +20,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Winkels',
-      darkTheme: darkTheme,
-      theme: lightTheme,
-      initialRoute: '/',
-      routes: {
-        '/': (BuildContext context) => PhoneNumberPage(),
-        // '/welcome': (BuildContext context) => WelcomePage(),
+    return Listener(
+      onPointerDown: (_) {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          currentFocus.focusedChild.unfocus();
+        }
       },
+      child: MaterialApp(
+        title: 'Winkels',
+        darkTheme: darkTheme,
+        theme: lightTheme,
+        initialRoute: '/',
+        routes: {
+          '/': (BuildContext context) => VerificationCodePage(),
+          '/phone_number': (BuildContext context) => PhoneNumberPage(),
+          // '/welcome': (BuildContext context) => WelcomePage(),
+        },
+      ),
     );
   }
 }

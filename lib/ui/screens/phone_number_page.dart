@@ -46,6 +46,10 @@ class PhoneNumberPage extends StatelessWidget {
                             child: Form(
                               child: TextFormField(
                                 maxLength: 10,
+                                  keyboardType : TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                ],
                                 // inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
                                 validator: (value) {
                                   if (value.length == 10 && value.startsWith('3')) {
@@ -53,20 +57,15 @@ class PhoneNumberPage extends StatelessWidget {
                                   }
                                   return 'Número incorrecto';
                                 },
-                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   contentPadding: EdgeInsets.only(left: 10, top: 20),
-                                  border: InputBorder.none,
-                                  labelStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
+
                                 ),
                               ),
                             ),
                           ),
                         ],
                       ),
-                      Divider(color: Colors.black,),
                       Flexible(child: Container(height: double.infinity, width: double.infinity)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
