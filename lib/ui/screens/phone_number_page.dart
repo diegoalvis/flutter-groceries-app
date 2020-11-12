@@ -8,6 +8,11 @@ class PhoneNumberPage extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.arrow_back_ios_outlined),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+      ),
       body: Stack(
         children: [
           Container(
