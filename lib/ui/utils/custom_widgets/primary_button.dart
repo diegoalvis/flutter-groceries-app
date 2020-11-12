@@ -6,7 +6,7 @@ class PrimaryButton extends StatelessWidget {
   final Function onPressed;
   final Color buttonColor;
 
-  PrimaryButton({Key key, @required this.buttonText, this.onPressed, this.buttonColor: const Color(0xff164193), })
+  PrimaryButton({Key key, @required this.buttonText, this.onPressed, this.buttonColor })
       : super(key: key);
 
   @override
@@ -15,11 +15,11 @@ class PrimaryButton extends StatelessWidget {
       width: double.infinity,
       child: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(25.0),
         ),
         child: Text(
           buttonText,
-          style: TextStyle(color: Colors.white, fontSize: 15.0),
+          style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
         onPressed: this.onPressed,
         color: buttonColor,

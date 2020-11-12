@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
         theme: lightTheme,
         initialRoute: '/',
         routes: {
-          // '/': (BuildContext context) => SelectLocationPage(),
-          '/': (BuildContext context) => WelcomePage(),
+          '/': (BuildContext context) => SelectLocationPage(),
+          // '/': (BuildContext context) => WelcomePage(),
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
           // '/welcome': (BuildContext context) => WelcomePage(),
         },

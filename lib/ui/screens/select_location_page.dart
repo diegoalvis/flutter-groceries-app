@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
 class SelectLocationPage extends StatelessWidget {
   TextEditingController _controller = new TextEditingController();
@@ -60,6 +61,11 @@ class SelectLocationPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
+                    Flexible(
+                        child: Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                    )),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -93,7 +99,6 @@ class SelectLocationPage extends StatelessWidget {
                           style: TextStyle(color: Colors.black45),
                         ),
                         TextField(
-
                           textInputAction: TextInputAction.search,
                           maxLength: 60,
                           textCapitalization: TextCapitalization.words,
@@ -107,7 +112,18 @@ class SelectLocationPage extends StatelessWidget {
                           ),
                         )
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    PrimaryButton(
+                      buttonText: 'Enviar',
+                      buttonColor: Theme.of(context).primaryColor,
+                      onPressed: () {},
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
                   ],
                 ),
               )
@@ -118,18 +134,3 @@ class SelectLocationPage extends StatelessWidget {
     );
   }
 }
-
-// SingleChildScrollView(
-// child: ConstrainedBox(
-// constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-// child: Column(
-// mainAxisAlignment: MainAxisAlignment.center,
-// crossAxisAlignment: CrossAxisAlignment.stretch,
-// children: <Widget>[
-// Expanded(
-// child: Text('Hello World!'),
-// ),
-// ],
-// ),
-// )
-// )
