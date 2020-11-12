@@ -8,6 +8,7 @@ import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
+import 'ui/screens/home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
@@ -36,12 +37,13 @@ class MyApp extends StatelessWidget {
         theme: lightTheme,
         initialRoute: '/',
         routes: {
-          // '/': (BuildContext context) => SingInPage(),
-          '/': (BuildContext context) => PhoneNumberPage(),
+          '/': (BuildContext context) => WelcomePage(),
+          // '/': (BuildContext context) => HomePage(),
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
           '/select_location': (BuildContext context) => SelectLocationPage(),
           '/sing_in': (BuildContext context) => SingInPage(),
           '/verification_code': (BuildContext context) => VerificationCodePage(),
+          '/home': (BuildContext context) => HomePage(),
 
           // '/welcome': (BuildContext context) => WelcomePage(),
         },
