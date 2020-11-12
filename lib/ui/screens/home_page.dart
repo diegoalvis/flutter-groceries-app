@@ -58,7 +58,10 @@ class HomePage extends StatelessWidget {
                     StoreCard(
                       nameStore: 'Tienda 1',
                     ),
-                    ItemCard(text: 'Huevos Blancos', imageAsset: 'assets/images/img_egg.png',)
+                    ItemCard(
+                      text: 'Huevos Blancos',
+                      imageAsset: 'assets/images/img_egg.png',
+                    )
                   ],
                 ),
               ),
@@ -71,10 +74,13 @@ class HomePage extends StatelessWidget {
 }
 
 class ItemCard extends StatelessWidget {
-  final  String text;
-  final  String imageAsset;
+  final String text;
+  final String imageAsset;
+
   const ItemCard({
-    Key key,@required this.text,@required this.imageAsset,
+    Key key,
+    @required this.text,
+    @required this.imageAsset,
   }) : super(key: key);
 
   @override
