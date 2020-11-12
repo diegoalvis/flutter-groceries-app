@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/core/app_colors.dart';
-import 'package:winkels_customer/ui/screens/phone_number_pagedart';
+import 'package:winkels_customer/ui/screens/phone_number_page.dart';
 import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
