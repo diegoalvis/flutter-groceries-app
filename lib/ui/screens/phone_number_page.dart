@@ -34,7 +34,7 @@ class PhoneNumberPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Consigue lo que necesitas con Winkels',
+                        'Consigue lo que necesitas\a con Winkels', style: TextStyle(fontSize: 22),
                       ),
                       Row(
                         children: [
