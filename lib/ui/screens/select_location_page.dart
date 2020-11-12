@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/ui/screens/sing_in_page.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
 class SelectLocationPage extends StatelessWidget {
-  TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +120,9 @@ class SelectLocationPage extends StatelessWidget {
                     PrimaryButton(
                       buttonText: 'Enviar',
                       buttonColor: Theme.of(context).primaryColor,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => SingInPage()));
+                      },
                     ),
                     SizedBox(
                       height: 40,

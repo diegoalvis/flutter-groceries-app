@@ -30,14 +30,19 @@ class MyApp extends StatelessWidget {
         }
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Winkels',
         darkTheme: darkTheme,
         theme: lightTheme,
         initialRoute: '/',
         routes: {
-          '/': (BuildContext context) => SingInPage(),
-          // '/': (BuildContext context) => WelcomePage(),
+          // '/': (BuildContext context) => SingInPage(),
+          '/': (BuildContext context) => PhoneNumberPage(),
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
+          '/select_location': (BuildContext context) => SelectLocationPage(),
+          '/sing_in': (BuildContext context) => SingInPage(),
+          '/verification_code': (BuildContext context) => VerificationCodePage(),
+
           // '/welcome': (BuildContext context) => WelcomePage(),
         },
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'select_location_page.dart';
+
 class VerificationCodePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,9 @@ class VerificationCodePage extends StatelessWidget {
                           child: IconButton(
                             icon: Icon(Icons.arrow_forward_ios),
                             color: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => SelectLocationPage()));
+                            },
                           ),
                         ),
                       ),

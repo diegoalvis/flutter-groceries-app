@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/ui/login/login_page.dart';
+import 'package:winkels_customer/ui/screens/phone_number_page.dart';
+import 'package:winkels_customer/ui/screens/sing_in_page.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -40,7 +42,7 @@ class WelcomePage extends StatelessWidget {
                 buttonText: "Empezar",
                 buttonColor: Theme.of(context).primaryColor,
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PhoneNumberPage()));
                 },
               ),
               SizedBox(height: 60,)

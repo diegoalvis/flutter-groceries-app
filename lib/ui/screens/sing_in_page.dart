@@ -9,106 +9,108 @@ class SingInPage extends StatelessWidget {
       //   backgroundColor: Colors.white,
       //   elevation: 0.0,
       // ),
-      body: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-        child: Stack(
-          children: [
-            Container(
-              color: Colors.white,
-            ),
-            Column(
-              children: [
-                Image.asset(
-                  'assets/images/bag.png',
-                  fit: BoxFit.cover,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20, left: 20, ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Completa tu registro',
-                            style: TextStyle(fontSize: 22),
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+          child: Stack(
+            children: [
+              Container(
+                color: Colors.white,
+              ),
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/bag.png',
+                    fit: BoxFit.cover,
+                  ),
+                  Flexible(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20, left: 20, ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Completa tu registro',
+                              style: TextStyle(fontSize: 22),
+                            ),
                           ),
-                        ),
-                        Flexible(child: Container(height: double.infinity, width: double.infinity)),
-                        IconPrimaryButton(
-                          buttonText: 'Ingreso con correo',
-                          icon: 'assets/icons/ic_google.png',
-                          buttonColor: Color(0xffC5C9D0),
-                          onPressed: () {},
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        IconPrimaryButton(
-                          buttonText: 'Continua con Google',
-                          icon: 'assets/icons/ic_google.png',
-                          buttonColor: Color(0xff5383EC),
-                          onPressed: () {},
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        IconPrimaryButton(
-                          buttonText: 'Continua con Facebook',
-                          icon: 'assets/icons/ic_google.png',
-                          buttonColor: Color(0xff4A66AC),
-                          onPressed: () {},
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text('Ya tienes una cuenta?'),
-                            GestureDetector(
-                              onTap: () {
-                                debugPrint('222');
-                                Navigator.pushNamed(context, '/registro');
-                              },
-                              child: Text(
-                                ' Ingresa',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor,
+                          Flexible(child: Container(height: double.infinity, width: double.infinity)),
+                          IconPrimaryButton(
+                            buttonText: 'Ingreso con correo',
+                            icon: 'assets/icons/ic_google.png',
+                            buttonColor: Color(0xffC5C9D0),
+                            onPressed: () {},
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          IconPrimaryButton(
+                            buttonText: 'Continua con Google',
+                            icon: 'assets/icons/ic_google.png',
+                            buttonColor: Color(0xff5383EC),
+                            onPressed: () {},
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          IconPrimaryButton(
+                            buttonText: 'Continua con Facebook',
+                            icon: 'assets/icons/ic_google.png',
+                            buttonColor: Color(0xff4A66AC),
+                            onPressed: () {},
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text('Ya tienes una cuenta?'),
+                              GestureDetector(
+                                onTap: () {
+                                  debugPrint('222');
+                                  Navigator.pushNamed(context, '/registro');
+                                },
+                                child: Text(
+                                  ' Ingresar',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            debugPrint('222');
-                            Navigator.pushNamed(context, '/registro');
-                          },
-                          child: Text(
-                            ' Omitir este paso',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColor,
+                            ],
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              debugPrint('222');
+                              Navigator.pushNamed(context, '/registro');
+                            },
+                            child: Text(
+                              ' Omitir este paso',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).primaryColor,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                      ],
+                          SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
