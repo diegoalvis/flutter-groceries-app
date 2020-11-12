@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'home_page.dart';
+
 class SingInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,9 @@ class SingInPage extends StatelessWidget {
                             buttonText: 'Ingreso con correo',
                             icon: 'assets/icons/ic_google.png',
                             buttonColor: Color(0xffC5C9D0),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                            },
                           ),
                           SizedBox(
                             height: 15,
@@ -51,7 +55,9 @@ class SingInPage extends StatelessWidget {
                             buttonText: 'Continua con Google',
                             icon: 'assets/icons/ic_google.png',
                             buttonColor: Color(0xff5383EC),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                            },
                           ),
                           SizedBox(
                             height: 15,
@@ -60,7 +66,9 @@ class SingInPage extends StatelessWidget {
                             buttonText: 'Continua con Facebook',
                             icon: 'assets/icons/ic_google.png',
                             buttonColor: Color(0xff4A66AC),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                            },
                           ),
                           SizedBox(
                             height: 15,
