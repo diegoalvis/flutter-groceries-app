@@ -37,8 +37,9 @@ class MyApp extends StatelessWidget {
         theme: lightTheme,
         initialRoute: '/',
         routes: {
-          // '/': (BuildContext context) => WelcomePage(),
-          '/': (BuildContext context) => HomePage(),
+
+          // '/': (BuildContext context) => HomePage(),
+          '/': (BuildContext context) => WelcomePage(),
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
           '/select_location': (BuildContext context) => SelectLocationPage(),
           '/sing_in': (BuildContext context) => SingInPage(),
