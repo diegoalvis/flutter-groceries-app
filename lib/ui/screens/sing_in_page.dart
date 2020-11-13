@@ -6,11 +6,6 @@ class SingInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: Icon(Icons.arrow_back_ios_outlined),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0.0,
-      // ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
@@ -59,7 +54,7 @@ class SingInPage extends StatelessWidget {
                       ),
                       IconPrimaryButton(
                         buttonText: 'Continua con Facebook',
-                        icon: 'assets/icons/ic_google.png',
+                        icon: 'assets/icons/ic_facebook.png',
                         buttonColor: Color(0xff4A66AC),
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));

@@ -3,18 +3,20 @@ import 'package:flutter/services.dart';
 
 import 'verification_code.dart';
 
-class PhoneNumberPage extends StatelessWidget {
+
+
+class PhoneNumberPage extends StatefulWidget {
+
+  @override
+  _PhoneNumberPageState createState() => _PhoneNumberPageState();
+}
+
+class _PhoneNumberPageState extends State<PhoneNumberPage> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    final TextEditingController _phoneController = new TextEditingController();
 
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: Icon(Icons.arrow_back_ios_outlined),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0.0,
-      // ),
       body: Column(
         children: [
           Image.asset(
@@ -23,14 +25,9 @@ class PhoneNumberPage extends StatelessWidget {
           ),
           Expanded(
               child: Padding(
-            padding: const EdgeInsets.only(
-              right: 20,
-              left: 20,
-              bottom: 20
-            ),
+            padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
             child: Column(
               children: [
-
                 Text(
                   'Consigue lo que necesitas\a con Winkels',
                   style: TextStyle(fontSize: 22),
@@ -50,11 +47,11 @@ class PhoneNumberPage extends StatelessWidget {
                       child: Form(
                         child: TextFormField(
                           maxLength: 10,
+                          controller: _phoneController,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                           ],
-                          // inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
                           validator: (value) {
                             if (value.length == 10 && value.startsWith('3')) {
                               return null;
@@ -85,7 +82,7 @@ class PhoneNumberPage extends StatelessWidget {
                             icon: Icon(Icons.arrow_forward_ios),
                             color: Colors.white,
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage('312 2222222222222')));
                             },
                           ),
                         ),

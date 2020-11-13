@@ -7,15 +7,7 @@ class SelectLocationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: Icon(Icons.arrow_back_ios_outlined),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0.0,
-      // ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
@@ -61,7 +53,7 @@ class SelectLocationPage extends StatelessWidget {
                     child: Container(
                   height: double.infinity,
                   width: double.infinity,
-                )),
+                ),),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
