@@ -9,6 +9,7 @@ import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
 import 'ui/screens/home_page.dart';
+import 'ui/screens/my_card.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
@@ -38,8 +39,9 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
 
-          // '/': (BuildContext context) => HomePage(),
-          '/': (BuildContext context) => WelcomePage(),
+          '/': (BuildContext context) => MyCardPage(),
+          // '/': (BuildContext context) => WelcomePage(),
+
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
           '/select_location': (BuildContext context) => SelectLocationPage(),
           '/sing_in': (BuildContext context) => SingInPage(),
