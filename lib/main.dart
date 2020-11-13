@@ -4,12 +4,15 @@ import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/screens/select_location_page.dart';
 import 'package:winkels_customer/ui/screens/sing_in_page.dart';
+import 'package:winkels_customer/ui/screens/successful_order_page.dart';
+import 'package:winkels_customer/ui/screens/verification_code.dart';
 import 'package:winkels_customer/ui/register/verification_code.dart';
 import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
 import 'ui/screens/home_page.dart';
+import 'ui/screens/my_car_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
@@ -38,12 +41,17 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
 
-          // '/': (BuildContext context) => HomePage(),
           '/': (BuildContext context) => WelcomePage(),
+          // '/': (BuildContext context) => SuccessfulOrderPage(),
+
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
           '/select_location': (BuildContext context) => SelectLocationPage(),
           '/sing_in': (BuildContext context) => SingInPage(),
+          '/verification_code': (BuildContext context) => VerificationCodePage(''),
           '/home': (BuildContext context) => HomePage(),
+          '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
+          '/my_car': (BuildContext context) => MyCarPage(),
+
 
           // '/welcome': (BuildContext context) => WelcomePage(),
         },

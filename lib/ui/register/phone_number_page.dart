@@ -3,23 +3,25 @@ import 'package:flutter/services.dart';
 
 import 'verification_code.dart';
 
-class PhoneNumberPage extends StatelessWidget {
+
+
+class PhoneNumberPage extends StatefulWidget {
+
+  @override
+  _PhoneNumberPageState createState() => _PhoneNumberPageState();
+}
+
+class _PhoneNumberPageState extends State<PhoneNumberPage> {
 
   TextEditingController _textController = TextEditingController();
   String countryCode = "+57";
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: Icon(Icons.arrow_back_ios_outlined),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0.0,
-      // ),
-      body: Stack(
+      body: Column(
         children: [
           Container(
             color: Colors.white,
