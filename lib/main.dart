@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
 
-          '/': (BuildContext context) => PhoneNumberPage(),
+          '/': (BuildContext context) => WelcomePage(),
           // '/': (BuildContext context) => SuccessfulOrderPage(),
 
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
@@ -49,6 +49,8 @@ class MyApp extends StatelessWidget {
           '/verification_code': (BuildContext context) => VerificationCodePage(''),
           '/home': (BuildContext context) => HomePage(),
           '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
+          '/my_car': (BuildContext context) => MyCarPage(),
+
 
           // '/welcome': (BuildContext context) => WelcomePage(),
         },
