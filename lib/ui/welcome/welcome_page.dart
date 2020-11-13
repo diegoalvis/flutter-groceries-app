@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/ui/login/login_page.dart';
-import 'package:winkels_customer/ui/screens/phone_number_page.dart';
+import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/screens/sing_in_page.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 

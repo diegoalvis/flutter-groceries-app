@@ -4,6 +4,10 @@ import 'package:flutter/services.dart';
 import 'verification_code.dart';
 
 class PhoneNumberPage extends StatelessWidget {
+
+  TextEditingController _textController = TextEditingController();
+  String countryCode = "+57";
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -28,14 +32,9 @@ class PhoneNumberPage extends StatelessWidget {
               ),
               Expanded(
                   child: Padding(
-                padding: const EdgeInsets.only(
-                  right: 20,
-                  left: 20,
-                  bottom: 20
-                ),
+                padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
                 child: Column(
                   children: [
-
                     Text(
                       'Consigue lo que necesitas\a con Winkels',
                       style: TextStyle(fontSize: 22),
@@ -55,6 +54,7 @@ class PhoneNumberPage extends StatelessWidget {
                           child: Form(
                             child: TextFormField(
                               maxLength: 10,
+                              controller: _textController,
                               keyboardType: TextInputType.number,
                               inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -90,7 +90,7 @@ class PhoneNumberPage extends StatelessWidget {
                                 icon: Icon(Icons.arrow_forward_ios),
                                 color: Colors.white,
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage(countryCode + _textController.text)));
                                 },
                               ),
                             ),
