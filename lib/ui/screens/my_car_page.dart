@@ -6,7 +6,7 @@ import 'package:winkels_customer/ui/utils/custom_widgets/category_item.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/search_text_field.dart';
 
-class MyCardPage extends StatelessWidget {
+class MyCarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
