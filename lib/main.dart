@@ -43,19 +43,17 @@ class MyApp extends StatelessWidget {
               title: 'Winkels',
               darkTheme: darkTheme,
               theme: lightTheme,
-              initialRoute: '/',
+              initialRoute: '/welcome',
               routes: {
                 '/': (BuildContext context) => AccountPage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
-                '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
                 '/select_address': (BuildContext context) => SelectAddressPage(),
                 '/home': (BuildContext context) => HomePage(),
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_car': (BuildContext context) => MyCarPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
-
-                // '/welcome': (BuildContext context) => WelcomePage(),
+                '/welcome': (BuildContext context) => WelcomePage(),
               },
             );
           }),
