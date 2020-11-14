@@ -1,25 +1,25 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/core/app_colors.dart';
-import 'package:winkels_customer/ui/screens/select_location_page.dart';
-import 'package:winkels_customer/ui/screens/sing_in_page.dart';
+import 'package:winkels_customer/ui/address/select_address_page.dart';
+import 'package:winkels_customer/ui/register/phone_number_page.dart';
+import 'package:winkels_customer/ui/register/sing_in_page.dart';
 import 'package:winkels_customer/ui/screens/successful_order_page.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
 import 'ui/register/phone_number_page.dart';
-import 'ui/register/verification_code.dart';
 import 'ui/screens/account_page.dart';
 import 'ui/screens/home_page.dart';
 import 'ui/screens/my_car_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
-  // await EnvironmentConfiguration.run(); // Init env configuration
   await AppModule.initialise(); // Inject modules
-  // await Firebase.initializeApp(); // Init Firebase
+  await Firebase.initializeApp(); // Init Firebase
 
   runApp(MyApp());
 }
@@ -36,29 +36,29 @@ class MyApp extends StatelessWidget {
         }
       },
       child: FutureBuilder(
-        future: GetIt.I.allReady(),
-        builder: (context, snapshot) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Winkels',
-            darkTheme: darkTheme,
-            theme: lightTheme,
-            initialRoute: '/',
-            routes: {
-              '/': (BuildContext context) => AccountPage(),
-              '/phone_number': (BuildContext context) => PhoneNumberPage(),
-              '/select_location': (BuildContext context) => SelectLocationPage(),
-              '/sing_in': (BuildContext context) => SingInPage(),
-              '/home': (BuildContext context) => HomePage(),
-              '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
-              '/my_car': (BuildContext context) => MyCarPage(),
-              '/account_page': (BuildContext context) => AccountPage(),
+          future: GetIt.I.allReady(),
+          builder: (context, snapshot) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Winkels',
+              darkTheme: darkTheme,
+              theme: lightTheme,
+              initialRoute: '/',
+              routes: {
+                '/': (BuildContext context) => WelcomePage(),
+                '/phone_number': (BuildContext context) => PhoneNumberPage(),
+                '/select_location': (BuildContext context) => SelectAddressPage(),
+                '/sing_in': (BuildContext context) => SingInPage(),
+                '/select_address': (BuildContext context) => SelectAddressPage(),
+                '/home': (BuildContext context) => HomePage(),
+                '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
+                '/my_car': (BuildContext context) => MyCarPage(),
+                '/account_page': (BuildContext context) => AccountPage(),
 
-              // '/welcome': (BuildContext context) => WelcomePage(),
-            },
-          );
-        }
-      ),
+                // '/welcome': (BuildContext context) => WelcomePage(),
+              },
+            );
+          }),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
+import 'package:winkels_customer/data/models/Address.dart';
 import 'package:winkels_customer/data/models/base_product.dart';
 import 'package:winkels_customer/data/preferences/preferences.dart';
 
@@ -16,8 +17,8 @@ class Repository {
     return _apiClient.getProducts(vendorId);
   }
 
-  Future<bool> authenticateUser(String smsCode) async {
-    if (userPhoneVerified) return true;
+  Future<bool> authenticateUser(String phoneNumber, String smsCode) async {
+    if (userPhoneVerified) return registerUser(phoneNumber);
 
     try {
       FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,7 +26,7 @@ class Repository {
 
       final result = await _auth.signInWithCredential(credential);
       if (result.user != null) {
-        return true;
+        return registerUser(phoneNumber);
       }
       return false;
     } catch (e) {
@@ -33,12 +34,20 @@ class Repository {
     }
   }
 
-  Future requestSMSCode(String mobile) async {
+  Future<bool> registerUser(String phoneNumber) async {
+    final token = await _apiClient.registerUser(phoneNumber);
+    if (token != null && token.isNotEmpty) {
+      return _preferences.saveAuthToken(token);
+    }
+    return false;
+  }
+
+  Future requestSMSCode(String phoneNumber) async {
     userPhoneVerified = false;
     FirebaseAuth _auth = FirebaseAuth.instance;
     try {
       await _auth.verifyPhoneNumber(
-        phoneNumber: mobile,
+        phoneNumber: phoneNumber,
         timeout: Duration(seconds: 30),
         verificationCompleted: (AuthCredential authCredential) {
           _auth.signInWithCredential(authCredential).then((UserCredential credential) {
@@ -58,5 +67,17 @@ class Repository {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void saveUserSession() {
+    _preferences.loginUser();
+  }
+
+  Future<bool> saveUserAddress(Address address) {
+    return _preferences.saveUserAddress(address);
+  }
+
+  String getSelectedCity() {
+    return _preferences.getAddress()?.cityCode;
   }
 }
