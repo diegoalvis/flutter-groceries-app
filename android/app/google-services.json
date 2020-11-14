@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "472776457202-mp5guffi9eu96r8eb6v7shdv9kgngd7f.apps.googleusercontent.com",
+          "client_id": "472776457202-niqnva897c4f1stec25915mmabp2en0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.winkels.winkels_customer",
+            "certificate_hash": "9a1a22decb9eb540c301bc3a3293d66ce095331c"
+          }
+        },
+        {
+          "client_id": "472776457202-vesuradjdmg4hjn4c3db6otch8e1dboh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.winkels.winkels_customer",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
+import '../screens/home_page.dart';
 
 class SingInPage extends StatelessWidget {
   @override
@@ -17,7 +17,10 @@ class SingInPage extends StatelessWidget {
               ),
               Flexible(
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20, ),
+                  padding: const EdgeInsets.only(
+                    right: 20,
+                    left: 20,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,10 +35,9 @@ class SingInPage extends StatelessWidget {
                       Flexible(child: Container(height: double.infinity, width: double.infinity)),
                       IconPrimaryButton(
                         buttonText: 'Ingreso con correo',
-                        icon: 'assets/icons/ic_google.png',
                         buttonColor: Color(0xffC5C9D0),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                          Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
                         },
                       ),
                       SizedBox(
@@ -46,7 +48,7 @@ class SingInPage extends StatelessWidget {
                         icon: 'assets/icons/ic_google.png',
                         buttonColor: Color(0xff5383EC),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                          Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
                         },
                       ),
                       SizedBox(
@@ -57,7 +59,7 @@ class SingInPage extends StatelessWidget {
                         icon: 'assets/icons/ic_facebook.png',
                         buttonColor: Color(0xff4A66AC),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                          Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
                         },
                       ),
                       SizedBox(
@@ -69,8 +71,7 @@ class SingInPage extends StatelessWidget {
                           Text('Ya tienes una cuenta?'),
                           GestureDetector(
                             onTap: () {
-                              debugPrint('222');
-                              Navigator.pushNamed(context, '/registro');
+                              Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
                             },
                             child: Text(
                               ' Ingresar',
@@ -87,8 +88,7 @@ class SingInPage extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          debugPrint('222');
-                          Navigator.pushNamed(context, '/registro');
+                          Navigator.pushNamedAndRemoveUntil(context, '/home', (Route<dynamic> route) => false);
                         },
                         child: Text(
                           ' Omitir este paso',
@@ -131,10 +131,7 @@ class IconPrimaryButton extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 30),
-              child: Image.asset(icon),
-            ),
+            Padding(padding: const EdgeInsets.only(left: 10.0, right: 30), child: icon == null ? Icon(Icons.email, color: Colors.grey,) : Image.asset(icon)),
             Text(
               buttonText,
               style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w400),

@@ -12,6 +12,8 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
   TextEditingController _textController = TextEditingController();
   String countryCode = "+57";
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +45,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     ),
                     Expanded(
                       child: Form(
+                        key: _formKey,
                         child: TextFormField(
                           maxLength: 10,
                           controller: _textController,
@@ -52,7 +55,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                           ],
                           // inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
                           validator: (value) {
-                            if (value.length == 10 && value.startsWith('3')) {
+                            if (value.length == 10) {
                               return null;
                             }
                             return 'Número incorrecto';
@@ -80,7 +83,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                             icon: Icon(Icons.arrow_forward_ios),
                             color: Colors.white,
                             onPressed: () {
-                              if (_textController.text.isNotEmpty) {
+                              if (_formKey.currentState.validate() && _textController.text.isNotEmpty) {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage(countryCode + _textController.text)));
                               }
                             },

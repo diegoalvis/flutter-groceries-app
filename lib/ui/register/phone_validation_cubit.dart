@@ -10,6 +10,7 @@ class PhoneCubit extends BaseCubit {
   }
 
   Future<void> validatePhoneNumber(String smsCode) async {
+    emit(BaseState(StateType.loading));
     final res = await repository.authenticateUser(smsCode);
     if(res) {
       emit(BaseState(StateType.success));

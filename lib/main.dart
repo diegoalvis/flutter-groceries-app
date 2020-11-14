@@ -4,8 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/verification_code.dart';
-import 'package:winkels_customer/ui/screens/select_location_page.dart';
-import 'package:winkels_customer/ui/screens/sing_in_page.dart';
+import 'package:winkels_customer/ui/address/select_location_page.dart';
+import 'package:winkels_customer/ui/register/sing_in_page.dart';
 import 'package:winkels_customer/ui/screens/successful_order_page.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 

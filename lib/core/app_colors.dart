@@ -10,6 +10,7 @@ ThemeData lightTheme = ThemeData(
     accentColor: Color(0xff457BE0),
     accentColorBrightness: Brightness.light,
     bottomAppBarColor: Color(0xff6D42CE),
+    appBarTheme: AppBarTheme(color: Colors.white),
     cardColor: Color(0xaaF5E0C3),
     dividerColor: Color(0x1f6D42CE),
     focusColor: Color(0x1aF5E0C3)

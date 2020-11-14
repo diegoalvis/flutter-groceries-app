@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:winkels_customer/ui/screens/sing_in_page.dart';
+import 'package:winkels_customer/ui/register/sing_in_page.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
-class SelectLocationPage extends StatelessWidget {
+class SelectLocationPage extends StatefulWidget {
+  @override
+  _SelectLocationPageState createState() => _SelectLocationPageState();
+}
+
+class _SelectLocationPageState extends State<SelectLocationPage> {
   final TextEditingController _controller = new TextEditingController();
+
+  String selectedCity;
 
   @override
   Widget build(BuildContext context) {
@@ -50,30 +57,44 @@ class SelectLocationPage extends StatelessWidget {
                   height: 20,
                 ),
                 Flexible(
-                    child: Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                ),),
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                  ),
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Tu ciudad',
-                      style: TextStyle(color: Colors.black45),
-                    ),
-                    TextField(
-                      controller: TextEditingController()..text = 'Bogotá',
-                      textInputAction: TextInputAction.search,
-                      maxLength: 60,
-                      textCapitalization: TextCapitalization.words,
-                      onChanged: (text) {},
-                      decoration: InputDecoration(
-                        suffixIcon: Icon(
-                          Icons.keyboard_arrow_down_outlined,
-                          color: Colors.black54,
+                    GestureDetector(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+                                title: Text("Elige tu ciudad", style: TextStyle(color: Colors.black45)),
+                                content: buildCityList(),
+                              );
+                            });
+                      },
+                      child: Container(
+                        height: 40.0,
+                        margin: EdgeInsets.only(top: 50),
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(color: Colors.black, width: 1.0)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              selectedCity ?? 'Tu ciudad',
+                              style: TextStyle(color: Colors.black45),
+                            ),
+                            Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 24)
+                          ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -107,9 +128,11 @@ class SelectLocationPage extends StatelessWidget {
                 PrimaryButton(
                   buttonText: 'Enviar',
                   buttonColor: Theme.of(context).primaryColor,
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => SingInPage()));
-                  },
+                  onPressed: selectedCity == null
+                      ? null
+                      : () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SingInPage()));
+                        },
                 ),
                 SizedBox(
                   height: 40,
@@ -120,5 +143,32 @@ class SelectLocationPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget buildCityList() {
+    List<String> cityList = ["Bogota", "Medellin"];
+    return Container(
+        height: 200.0,
+        width: 200.0,
+        child: ListView.separated(
+            separatorBuilder: (c, i) => SizedBox(height: 12.0),
+            itemBuilder: (c, index) {
+              return InkWell(
+                onTap: () => {
+                  setState(() {
+                    selectedCity = cityList[index];
+                  }),
+                  Navigator.of(context, rootNavigator: true).pop(),
+                },
+                child: Container(
+                  height: 40,
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+                    Text(cityList[index], style: TextStyle(color: Colors.black45)),
+                    selectedCity == cityList[index] ? Icon(Icons.check_circle, size: 22) : SizedBox()
+                  ]),
+                ),
+              );
+            },
+            itemCount: cityList?.length ?? 0));
   }
 }
