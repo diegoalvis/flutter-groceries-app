@@ -11,7 +11,7 @@ class Address {
   final String cityCode;
   final String countryCode;
 
-  Address(this.countryCode, this.address, this.additional, this.cityCode);
+  Address({this.countryCode, this.address, this.additional, this.cityCode});
 
   factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
 

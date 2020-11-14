@@ -4,7 +4,7 @@ import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/verification_code_page.dart';
-import 'package:winkels_customer/ui/address/select_location_page.dart';
+import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/register/sing_in_page.dart';
 import 'package:winkels_customer/ui/screens/successful_order_page.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
@@ -44,10 +44,10 @@ class MyApp extends StatelessWidget {
               routes: {
                 '/': (BuildContext context) => WelcomePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
-                '/select_location': (BuildContext context) => SelectLocationPage(),
+                '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
                 '/verification_code': (BuildContext context) => VerificationCodePage(''),
-                '/select_address': (BuildContext context) => SelectLocationPage(),
+                '/select_address': (BuildContext context) => SelectAddressPage(),
                 '/home': (BuildContext context) => HomePage(),
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_car': (BuildContext context) => MyCarPage(),

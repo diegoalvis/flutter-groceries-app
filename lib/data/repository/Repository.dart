@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
+import 'package:winkels_customer/data/models/Address.dart';
 import 'package:winkels_customer/data/models/base_product.dart';
 import 'package:winkels_customer/data/preferences/preferences.dart';
 
@@ -17,7 +18,7 @@ class Repository {
   }
 
   Future<bool> authenticateUser(String phoneNumber, String smsCode) async {
-    if (userPhoneVerified) return true;
+    if (userPhoneVerified) return registerUser(phoneNumber);
 
     try {
       FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,12 +26,20 @@ class Repository {
 
       final result = await _auth.signInWithCredential(credential);
       if (result.user != null) {
-        return _apiClient.registerUser(phoneNumber);
+        return registerUser(phoneNumber);
       }
       return false;
     } catch (e) {
       return false;
     }
+  }
+
+  Future<bool> registerUser(String phoneNumber) async {
+    final token = await _apiClient.registerUser(phoneNumber);
+    if (token != null && token.isNotEmpty) {
+      return _preferences.saveAuthToken(token);
+    }
+    return false;
   }
 
   Future requestSMSCode(String phoneNumber) async {
@@ -61,6 +70,14 @@ class Repository {
   }
 
   void saveUserSession() {
-    _preferences.saveSession();
+    _preferences.loginUser();
+  }
+
+  Future<bool> saveUserAddress(Address address) {
+    return _preferences.saveUserAddress(address);
+  }
+
+  String getSelectedCity() {
+    return _preferences.getAddress()?.cityCode;
   }
 }

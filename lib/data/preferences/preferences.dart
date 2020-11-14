@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:winkels_customer/data/models/Address.dart';
 import 'package:winkels_customer/data/models/Profile.dart';
 
 class Preferences {
@@ -8,7 +9,9 @@ class Preferences {
 
   static const SELECTED_ADDRESS = 'selectedAddress';
   static const PROFILE = 'profile';
+  static const ADDRESS = 'address';
   static const USER_LOGGED_IN = "user_logged_in";
+  static const AUTH_TOKEN = "auth_token";
 
   Future<Preferences> init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -32,8 +35,8 @@ class Preferences {
     }
   }
 
-  Future<void> saveSession() async {
-    await _preferences.setBool(USER_LOGGED_IN, true);
+  Future<bool> loginUser() async {
+    return _preferences.setBool(USER_LOGGED_IN, true);
   }
 
   bool getSession() {
@@ -44,7 +47,36 @@ class Preferences {
     }
   }
 
+  Future<bool> saveAuthToken(String token) async {
+    return _preferences.setString(AUTH_TOKEN, token);
+  }
+
+  String getAuthToken() {
+    try {
+      return _preferences.getString(AUTH_TOKEN);
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<void> clearSession() async {
     await _preferences.setBool(USER_LOGGED_IN, false);
+  }
+
+  Future<bool> saveUserAddress(Address address) async {
+    if (address == null) {
+      return await _preferences.setString(ADDRESS, null);
+    } else {
+      return await _preferences.setString(ADDRESS, json.encode(address.toJson()));
+    }
+  }
+
+  Address getAddress() {
+    final addressJson = _preferences.getString(ADDRESS);
+    try {
+      return Address.fromJson(json.decode(addressJson));
+    } catch (e) {
+      return null;
+    }
   }
 }

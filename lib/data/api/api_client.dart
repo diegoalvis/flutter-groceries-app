@@ -20,7 +20,7 @@ class ApiClient {
     return productList;
   }
 
-  Future<bool> registerUser(String phoneNumber) async {
+  Future<String> registerUser(String phoneNumber) async {
     try {
       final response = await _dio.post(BASE_URL + "/auth/local/register", data: {
         'username': '$phoneNumber',
@@ -29,27 +29,27 @@ class ApiClient {
       });
 
       if (response.statusCode == 200) {
-        return true;
+        return response.data['jwt'].toString();
       }
-      return false;
+      return null;
     } catch (e) {
       if (e is DioError) {
         return loginUser(phoneNumber);
       } else {
-        return false;
+        return null;
       }
     }
   }
 
-  Future<bool> loginUser(String phoneNumber) async {
+  Future<String> loginUser(String phoneNumber) async {
     final response = await _dio.post(BASE_URL + "/auth/local", data: {
       'identifier': '$phoneNumber',
       'password': utf8.fuse(base64).encode(phoneNumber),
     });
 
     if (response.statusCode == 200) {
-      return true;
+      return response.data['jwt'].toString();
     }
-    return false;
+    return null;
   }
 }
