@@ -6,8 +6,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:winkels_customer/core/cubit/base_state.dart';
 import 'package:winkels_customer/ui/register/phone_validation_cubit.dart';
 
-import '../address/select_location_page.dart';
-
 class VerificationCodePage extends StatefulWidget {
   final String _phoneNumber;
 
@@ -25,7 +23,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
 
   @override
   void initState() {
-    _cubit.requestPhoneNumber(widget._phoneNumber);
+    _cubit.requestSMSCode(widget._phoneNumber);
     super.initState();
   }
 
@@ -45,7 +43,10 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
           cubit: _cubit,
           listener: (BuildContext context, state) {
             if (state.type == StateType.success) {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SelectLocationPage()));
+              Navigator.pushNamed(context, '/select_address');
+            }
+            if (state.type == StateType.error) {
+              Scaffold.of(context).showSnackBar(SnackBar(content: Text("Codigo no valido")));
             }
           },
           child: BlocBuilder<PhoneCubit, BaseState>(
@@ -63,9 +64,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                       padding: const EdgeInsets.only(bottom: 34),
                       child: Text(
                         'Ingresa el código de 6-digitos',
-                        style: TextStyle(
-                          fontSize: 24,
-                        ),
+                        style: TextStyle(fontSize: 24),
                       ),
                     ),
                     Text('Ingrese el código enviado al celular ', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300)),
@@ -104,7 +103,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            _cubit.requestPhoneNumber(widget._phoneNumber);
+                            _cubit.requestSMSCode(widget._phoneNumber);
                           },
                           child: Text(
                             "Reenviar Codigo",
@@ -126,7 +125,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                                 icon: Icon(Icons.arrow_forward_ios),
                                 color: Colors.white,
                                 onPressed: () {
-                                  _cubit.validatePhoneNumber(_pinController.text);
+                                  _cubit.validatePhoneNumber(widget._phoneNumber, _pinController.text);
                                 },
                               ),
                             ),

@@ -16,7 +16,7 @@ class Repository {
     return _apiClient.getProducts(vendorId);
   }
 
-  Future<bool> authenticateUser(String smsCode) async {
+  Future<bool> authenticateUser(String phoneNumber, String smsCode) async {
     if (userPhoneVerified) return true;
 
     try {
@@ -25,7 +25,7 @@ class Repository {
 
       final result = await _auth.signInWithCredential(credential);
       if (result.user != null) {
-        return true;
+        return _apiClient.registerUser(phoneNumber);
       }
       return false;
     } catch (e) {
@@ -33,12 +33,12 @@ class Repository {
     }
   }
 
-  Future requestSMSCode(String mobile) async {
+  Future requestSMSCode(String phoneNumber) async {
     userPhoneVerified = false;
     FirebaseAuth _auth = FirebaseAuth.instance;
     try {
       await _auth.verifyPhoneNumber(
-        phoneNumber: mobile,
+        phoneNumber: phoneNumber,
         timeout: Duration(seconds: 30),
         verificationCompleted: (AuthCredential authCredential) {
           _auth.signInWithCredential(authCredential).then((UserCredential credential) {
@@ -58,5 +58,9 @@ class Repository {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void saveUserSession() {
+    _preferences.saveSession();
   }
 }

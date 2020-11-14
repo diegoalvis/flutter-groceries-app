@@ -7,4 +7,4 @@ class BaseState {
   BaseState(this.type, {this.data});
 }
 
-enum StateType { initial, loading, success, error }
+enum StateType { initial, loading, success, error, navigate }

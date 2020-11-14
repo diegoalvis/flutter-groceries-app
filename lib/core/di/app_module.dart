@@ -12,7 +12,7 @@ class AppModule {
     // core
     getIt.registerSingletonAsync<Preferences>(() async => Preferences().init());
     getIt.registerSingletonAsync<Dio>(() async {
-      BaseOptions options = new BaseOptions(
+      BaseOptions options = BaseOptions(
         baseUrl: ApiClient.BASE_URL,
         connectTimeout: 5000,
         receiveTimeout: 3000,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'verification_code.dart';
+import 'verification_code_page.dart';
 
 class PhoneNumberPage extends StatefulWidget {
   @override

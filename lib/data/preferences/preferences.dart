@@ -8,6 +8,7 @@ class Preferences {
 
   static const SELECTED_ADDRESS = 'selectedAddress';
   static const PROFILE = 'profile';
+  static const USER_LOGGED_IN = "user_logged_in";
 
   Future<Preferences> init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -29,5 +30,21 @@ class Preferences {
     } catch (e) {
       return null;
     }
+  }
+
+  Future<void> saveSession() async {
+    await _preferences.setBool(USER_LOGGED_IN, true);
+  }
+
+  bool getSession() {
+    try {
+      return _preferences.getBool(USER_LOGGED_IN);
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<void> clearSession() async {
+    await _preferences.setBool(USER_LOGGED_IN, false);
   }
 }
