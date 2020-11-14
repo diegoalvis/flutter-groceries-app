@@ -17,7 +17,7 @@ class MyCarPage extends StatelessWidget {
               children: [
                 ItemShoppingCard(
                   cant: 20,
-                  nameProduct: 'Pimentón rojo Pimentón ',
+                  nameProduct: 'Pimentón rojo Pimentón Pimentón rojo Pimentón Pimentón rojo Pimentón Pimentón rojo Pimentón  ',
                   priceProduct: 1200,
                   imageAsset: 'assets/images/img_pimenton.png',
                 ),
