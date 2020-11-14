@@ -38,7 +38,7 @@ class SuccessfulOrderPage extends StatelessWidget {
               },
               child: Text("Regresar al inicio",
                   textAlign: TextAlign.center,
-                  style: TextStyle( fontSize: 20.0, )),
+                  style: TextStyle(color: Colors.green, fontSize: 20.0)),
             )
           ],
         ),

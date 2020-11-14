@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
 class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             height: 150,
-            color: Colors.blue,
+            padding: EdgeInsets.only(top: 50, left: 20, right: 20),
             child: Row(
               children: [
-                Image.asset('assets/images/img_account.png'),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.asset('assets/images/img_account.png'),
+                ),
                 SizedBox(
                   width: 20,
                 ),
@@ -22,29 +27,30 @@ class AccountPage extends StatelessWidget {
                     bottom: 20,
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Flexible(
                             child: Text(
-                              'nameProduct nameProductnameProductnameProductnameProductnameProductnameProduct',
+                              'Francisco Garcia Garcia',
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 5,
                           ),
                           Icon(
-                            Icons.close,
-                            color: Colors.black38,
+                            Icons.edit_outlined,
+                            color: Colors.green,
                           ),
                         ],
                       ),
-                      Text('1kg, Precio'),
+                      Text('fgarcia@gmail.com'),
                       SizedBox(
                         height: 10,
                       ),
@@ -55,14 +61,14 @@ class AccountPage extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 8,
             child: Container(
               child: ListView.builder(
-                padding: EdgeInsets.all(0.0),
-                itemCount: 10,
+                padding: EdgeInsets.only(top: 10),
+                itemCount: 8,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
-                    margin: EdgeInsets.only(bottom: 2),
+                    color: Colors.white,
+                    margin: EdgeInsets.only(bottom: 1),
                     child: ListTile(
                       leading: Icon(
                         Icons.equalizer_rounded,
@@ -83,8 +89,16 @@ class AccountPage extends StatelessWidget {
             ),
           ),
           Container(
-            height: 150,
-            color: Colors.orange,
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            height: 100,
+            child: PrimaryButton(
+              buttonText: 'Salir',
+              buttonColor: Color(0xffF2F3F2),
+              style: TextStyle(color: Colors.green, fontSize: 20.0,),
+              onPressed: () {
+
+              },
+            ),
           )
         ],
       ),
