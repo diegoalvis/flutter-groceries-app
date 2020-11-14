@@ -9,39 +9,48 @@ class AccountPage extends StatelessWidget {
           Container(
             height: 150,
             color: Colors.blue,
-            child:Row(
+            child: Row(
               children: [
                 Image.asset('assets/images/img_account.png'),
-                SizedBox(width: 20,),
+                SizedBox(
+                  width: 20,
+                ),
                 Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 20, bottom: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                  padding: const EdgeInsets.only(
+                    top: 20,
+                    bottom: 20,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  'nameProduct',
-                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
-                                ),
-                              ),
-                              SizedBox(width: 10,),
-
-                              Icon(Icons.close, color: Colors.black38,),
-                            ],
+                          Flexible(
+                            child: Text(
+                              'nameProduct nameProductnameProductnameProductnameProductnameProductnameProduct',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
-                          Text('1kg, Precio'),
-                          SizedBox(height: 10,),
-
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            Icons.close,
+                            color: Colors.black38,
+                          ),
                         ],
                       ),
-                    ))
+                      Text('1kg, Precio'),
+                      SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ))
               ],
             ),
           ),
