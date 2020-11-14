@@ -9,6 +9,7 @@ import 'package:winkels_customer/ui/welcome/splash.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
+import 'ui/screens/account_page.dart';
 import 'ui/screens/home_page.dart';
 import 'ui/screens/my_car_page.dart';
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
 
-          '/': (BuildContext context) => WelcomePage(),
+          '/': (BuildContext context) => AccountPage(),
           // '/': (BuildContext context) => SuccessfulOrderPage(),
 
           '/phone_number': (BuildContext context) => PhoneNumberPage(),
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           '/home': (BuildContext context) => HomePage(),
           '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
           '/my_car': (BuildContext context) => MyCarPage(),
+          '/account_page': (BuildContext context) => AccountPage(),
 
 
           // '/welcome': (BuildContext context) => WelcomePage(),
