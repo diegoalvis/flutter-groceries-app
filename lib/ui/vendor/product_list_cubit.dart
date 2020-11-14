@@ -1,31 +1,19 @@
-import 'package:bloc/bloc.dart';
+import 'package:winkels_customer/core/cubit/base_cubit.dart';
+import 'package:winkels_customer/core/cubit/base_state.dart';
 import 'package:winkels_customer/data/repository/Repository.dart';
 
-class ProductListCubit extends Cubit<ProductListState> {
-  final Repository _repository;
+class ProductListCubit extends BaseCubit {
 
-  ProductListCubit(this._repository) : super(ProductListState(StateType.initial));
+  ProductListCubit(Repository repository) : super(repository);
 
   Future<void> getProductList() async {
     try {
-      emit(ProductListState(StateType.loading));
+      emit(BaseState(StateType.loading));
       await Future.delayed(Duration(seconds: 2));
-      final res = await _repository.getProducts("vendorId");
-      emit(ProductListState(StateType.success, data: res));
+      final res = await repository.getProducts("vendorId");
+      emit(BaseState(StateType.success, data: res));
     } catch (e) {
-      emit(ProductListState(StateType.error));
+      emit(BaseState(StateType.error));
     }
   }
 }
-
-
-class ProductListState {
-  final StateType type;
-  dynamic data;
-
-  ProductListState(this.type, {this.data});
-}
-
-
-// TODO sacar a una clase aparte
-enum StateType { initial, loading, success, error }

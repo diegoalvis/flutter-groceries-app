@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:winkels_customer/core/cubit/base_state.dart';
 import 'package:winkels_customer/data/models/base_product.dart';
 import 'package:winkels_customer/data/repository/Repository.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/product_widget.dart';
@@ -13,7 +14,7 @@ class ProductListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Counter')),
-      body: BlocBuilder<ProductListCubit, ProductListState>(
+      body: BlocBuilder<ProductListCubit, BaseState>(
           cubit: cubit, // provide the local bloc instance
           builder: (context, state) {
             if (state.type == StateType.success) {

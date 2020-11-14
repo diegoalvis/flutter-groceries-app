@@ -3,19 +3,17 @@ import 'package:flutter/services.dart';
 
 import 'verification_code.dart';
 
-
-
 class PhoneNumberPage extends StatefulWidget {
-
   @override
   _PhoneNumberPageState createState() => _PhoneNumberPageState();
 }
 
 class _PhoneNumberPageState extends State<PhoneNumberPage> {
+  TextEditingController _textController = TextEditingController();
+  String countryCode = "+57";
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _phoneController = new TextEditingController();
-
     return Scaffold(
       body: Column(
         children: [
@@ -47,11 +45,12 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                       child: Form(
                         child: TextFormField(
                           maxLength: 10,
-                          controller: _phoneController,
+                          controller: _textController,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                           ],
+                          // inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
                           validator: (value) {
                             if (value.length == 10 && value.startsWith('3')) {
                               return null;
@@ -66,7 +65,6 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     ),
                   ],
                 ),
-                Flexible(child: Container(height: double.infinity, width: double.infinity)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -82,7 +80,9 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                             icon: Icon(Icons.arrow_forward_ios),
                             color: Colors.white,
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage('312 2222222222222')));
+                              if (_textController.text.isNotEmpty) {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => VerificationCodePage(countryCode + _textController.text)));
+                              }
                             },
                           ),
                         ),
