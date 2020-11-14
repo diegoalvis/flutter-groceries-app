@@ -36,23 +36,27 @@ class Repository {
   Future requestSMSCode(String mobile) async {
     userPhoneVerified = false;
     FirebaseAuth _auth = FirebaseAuth.instance;
-    await _auth.verifyPhoneNumber(
-      phoneNumber: mobile,
-      timeout: Duration(seconds: 30),
-      verificationCompleted: (AuthCredential authCredential) {
-        _auth.signInWithCredential(authCredential).then((UserCredential credential) {
-          userPhoneVerified = true;
-        });
-      },
-      verificationFailed: (FirebaseAuthException authException) {
-        print(authException.message);
-      },
-      codeSent: (String id, [int forceResendingToken]) {
-        this.verificationId = id;
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        this.verificationId = verificationId;
-      },
-    );
+    try {
+      await _auth.verifyPhoneNumber(
+        phoneNumber: mobile,
+        timeout: Duration(seconds: 30),
+        verificationCompleted: (AuthCredential authCredential) {
+          _auth.signInWithCredential(authCredential).then((UserCredential credential) {
+            userPhoneVerified = true;
+          });
+        },
+        verificationFailed: (FirebaseAuthException authException) {
+          print(authException.message);
+        },
+        codeSent: (String id, [int forceResendingToken]) {
+          this.verificationId = id;
+        },
+        codeAutoRetrievalTimeout: (verificationId) {
+          this.verificationId = verificationId;
+        },
+      );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }

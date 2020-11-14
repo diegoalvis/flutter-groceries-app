@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/verification_code.dart';
@@ -31,26 +32,29 @@ class MyApp extends StatelessWidget {
           currentFocus.focusedChild.unfocus();
         }
       },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Winkels',
-        darkTheme: darkTheme,
-        theme: lightTheme,
-        initialRoute: '/',
-        routes: {
-          '/': (BuildContext context) => WelcomePage(),
-          // '/': (BuildContext context) => SuccessfulOrderPage(),
+      child: FutureBuilder(
+        future: GetIt.I.allReady(),
+        builder: (context, snapshot) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Winkels',
+            darkTheme: darkTheme,
+            theme: lightTheme,
+            initialRoute: '/phone_number',
+            routes: {
+              '/': (BuildContext context) => WelcomePage(),
+              '/phone_number': (BuildContext context) => PhoneNumberPage(),
+              '/select_location': (BuildContext context) => SelectLocationPage(),
+              '/sing_in': (BuildContext context) => SingInPage(),
+              '/verification_code': (BuildContext context) => VerificationCodePage(''),
+              '/home': (BuildContext context) => HomePage(),
+              '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
+              '/my_car': (BuildContext context) => MyCarPage(),
 
-          '/phone_number': (BuildContext context) => PhoneNumberPage(),
-          '/select_location': (BuildContext context) => SelectLocationPage(),
-          '/sing_in': (BuildContext context) => SingInPage(),
-          '/verification_code': (BuildContext context) => VerificationCodePage(''),
-          '/home': (BuildContext context) => HomePage(),
-          '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
-          '/my_car': (BuildContext context) => MyCarPage(),
-
-          // '/welcome': (BuildContext context) => WelcomePage(),
-        },
+              // '/welcome': (BuildContext context) => WelcomePage(),
+            },
+          );
+        }
       ),
     );
   }
