@@ -3,11 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/card_store.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/category_item.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_card.dart';
+import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/search_text_field.dart';
 
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+    IndexedStack();
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -51,9 +54,11 @@ class HomePage extends StatelessWidget {
                 text: 'Huevos Blancos',
                 imageAsset: 'assets/images/img_egg.png',
               ),
-              Text(
-                'Categorias',
-                style: TextStyle(fontWeight: FontWeight.w500),
+              ItemShoppingCard(
+                cant: 20,
+                nameProduct: 'Pimentón rojo Pimentón ',
+                priceProduct: 1200,
+                imageAsset: 'assets/images/img_pimenton.png',
               ),
               SizedBox(
                 height: 15,
@@ -67,6 +72,12 @@ class HomePage extends StatelessWidget {
               ),
               StoreCard(
                 nameStore: 'Tienda 1',
+              ),
+              ItemShoppingCard(
+                cant: 20,
+                nameProduct: 'Pimentón rojo Pimentón ',
+                priceProduct: 1200,
+                imageAsset: 'assets/images/img_pimenton.png',
               ),
               ItemCard(
                 text: 'Huevos Blancos',

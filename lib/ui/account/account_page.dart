@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/ui/home/destination.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
 class AccountPage extends StatelessWidget {
+
+  final Destination destination;
+
+  const AccountPage({Key key, this.destination}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

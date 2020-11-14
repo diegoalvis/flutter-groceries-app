@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/home_page.dart';
+import '../home/home_page.dart';
 
 class SingInPage extends StatelessWidget {
   @override

@@ -1,20 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/sing_in_page.dart';
-import 'package:winkels_customer/ui/screens/successful_order_page.dart';
+import 'package:winkels_customer/ui/utils/custom_widgets/successful_order_page.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
+import 'ui/home/home_page.dart';
 import 'ui/register/phone_number_page.dart';
-import 'ui/screens/account_page.dart';
-import 'ui/screens/home_page.dart';
-import 'ui/screens/my_car_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
@@ -43,17 +39,14 @@ class MyApp extends StatelessWidget {
               title: 'Winkels',
               darkTheme: darkTheme,
               theme: lightTheme,
-              initialRoute: '/welcome',
+              initialRoute: '/',
               routes: {
-                '/': (BuildContext context) => AccountPage(),
+                '/': (BuildContext context) => WelcomePage(),
+                '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
                 '/select_address': (BuildContext context) => SelectAddressPage(),
                 '/home': (BuildContext context) => HomePage(),
-                '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
-                '/my_car': (BuildContext context) => MyCarPage(),
-                '/account_page': (BuildContext context) => AccountPage(),
-                '/welcome': (BuildContext context) => WelcomePage(),
               },
             );
           }),

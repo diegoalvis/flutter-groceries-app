@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/card_store.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/category_item.dart';
+import 'package:winkels_customer/ui/home/destination.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/search_text_field.dart';
 
-class MyCarPage extends StatelessWidget {
+class MyCartPage extends StatelessWidget {
+
+  final Destination destination;
+
+  const MyCartPage({Key key, this.destination}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
