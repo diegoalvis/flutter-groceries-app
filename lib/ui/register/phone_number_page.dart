@@ -74,6 +74,8 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     ),
                   ],
                 ),
+                Flexible(child: Container(height: double.infinity, width: double.infinity)),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

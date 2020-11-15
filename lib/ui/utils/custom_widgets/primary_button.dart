@@ -8,9 +8,10 @@ class PrimaryButton extends StatelessWidget {
   final TextStyle style;
 
   static const TextStyle defaultStyle = TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold);
+  static const Color defaultColorButton = Color(0xff02A0CF);
 
 
-  PrimaryButton({Key key, @required this.buttonText, this.onPressed, this.buttonColor, this.style: defaultStyle })
+  PrimaryButton({Key key, @required this.buttonText, this.onPressed, this.buttonColor: defaultColorButton, this.style: defaultStyle })
       : super(key: key);
 
   @override

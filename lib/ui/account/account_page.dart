@@ -15,6 +15,7 @@ class AccountPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
+            color: Colors.white,
             height: 150,
             padding: EdgeInsets.only(top: 50, left: 20, right: 20),
             child: Row(
