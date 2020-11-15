@@ -15,6 +15,7 @@ import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/register/phone_number_page.dart';
 // import 'ui/screens/account_page.dart';
+import 'ui/screens/change_password.dart';
 import 'ui/screens/home_page.dart';
 // import 'ui/screens/my_car_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
               theme: lightTheme,
               initialRoute: '/',
               routes: {
-                '/': (BuildContext context) => WelcomePage(),
+                '/': (BuildContext context) => ChangePassword(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
