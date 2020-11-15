@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:winkels_customer/data/models/server_image.dart';
 
 part 'City.g.dart';
 

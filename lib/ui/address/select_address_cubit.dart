@@ -12,7 +12,7 @@ class SelectAddressCubit extends BaseCubit {
 
   Future<void> saveAddress(String address, City city) async {
     emit(BaseState(StateType.loading));
-    final userAddress = Address(address: address, cityCode: city.cityCode, countryCode: city.countryCode);
+    final userAddress = Address(address: address, cityName: city.name, cityCode: city.cityCode, countryCode: city.countryCode);
     final res = await repository.saveUserAddress(userAddress);
     if (res) {
       emit(BaseState(StateType.navigate));
@@ -20,8 +20,8 @@ class SelectAddressCubit extends BaseCubit {
       emit(BaseState(StateType.error));
     }
   }
-  
+
   String getSelectedCity() {
-    return repository.getSelectedCity();
+    return repository.getSavedAddress()?.cityName;
   }
 }

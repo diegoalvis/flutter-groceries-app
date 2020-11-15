@@ -7,19 +7,29 @@ import 'package:winkels_customer/ui/address/select_address_cubit.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
 class SelectAddressPage extends StatefulWidget {
+  City currentCity;
+
+  SelectAddressPage({Key key, this.currentCity}) : super(key: key);
+
   @override
   _SelectAddressPageState createState() => _SelectAddressPageState();
 }
 
 class _SelectAddressPageState extends State<SelectAddressPage> {
-  final TextEditingController _addressController = new TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   final _cubit = SelectAddressCubit(GetIt.I.get());
 
-  City selectedCity;
+  @override
+  void dispose() {
+    _addressController.dispose();
+    _cubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
@@ -34,9 +44,6 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
               },
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 70,
-                  ),
                   Center(
                     child: Image.asset(
                       'assets/images/map.png',
@@ -44,7 +51,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Text(
                     'Selecciona tu Ubicacion',
@@ -53,7 +60,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 40,
                   ),
                   Container(
                     width: 220,
@@ -66,13 +73,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
-                  ),
-                  Flexible(
-                    child: Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                    ),
+                    height: 30,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -99,7 +100,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                selectedCity?.name ?? 'Tu ciudad',
+                                widget.currentCity?.name ?? 'Tu ciudad',
                                 style: TextStyle(color: Colors.black45),
                               ),
                               Icon(Icons.keyboard_arrow_down, color: Colors.black, size: 24)
@@ -140,10 +141,10 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                   PrimaryButton(
                     buttonText: 'Enviar',
                     buttonColor: Theme.of(context).primaryColor,
-                    onPressed: selectedCity == null || _addressController.text == null || _addressController.text.length < 4
+                    onPressed: widget.currentCity == null || _addressController.text == null || _addressController.text.length < 4
                         ? null
                         : () {
-                            _cubit.saveAddress(_addressController.text, selectedCity);
+                            _cubit.saveAddress(_addressController.text, widget.currentCity);
                           },
                   ),
                   SizedBox(
@@ -169,7 +170,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
               return InkWell(
                 onTap: () => {
                   setState(() {
-                    selectedCity = cityList[index];
+                    widget.currentCity = cityList[index];
                   }),
                   Navigator.of(context, rootNavigator: true).pop(),
                 },
@@ -177,7 +178,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                   height: 40,
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
                     Text(cityList[index].name, style: TextStyle(color: Colors.black45)),
-                    selectedCity == cityList[index] ? Icon(Icons.check_circle, size: 22) : SizedBox()
+                    widget.currentCity == cityList[index] ? Icon(Icons.check_circle, size: 22) : SizedBox()
                   ]),
                 ),
               );

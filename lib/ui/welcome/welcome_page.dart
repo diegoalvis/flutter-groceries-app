@@ -7,10 +7,10 @@ import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    validateUserAuth(context);
     return FutureBuilder(
-        future: Future.delayed(Duration(seconds: 1)),
+        future: Future.delayed(Duration(seconds: 2)),
         builder: (context, snapshot) {
-          validateUserAuth(context);
           return Scaffold(
               body: Stack(
             children: [

@@ -42,7 +42,8 @@ class VendorListPage extends StatelessWidget {
             return Center(
               child: RaisedButton(
                   onPressed: () {
-                    cubit.getProductList();
+                    Navigator.pushNamed(context, '/search');
+                    // cubit.getProductList();
                   },
                   child: Text("Obtener productos")),
             );

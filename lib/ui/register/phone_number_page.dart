@@ -15,6 +15,12 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(

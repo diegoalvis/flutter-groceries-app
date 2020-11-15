@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../home/home_page.dart';
-
 class SingInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

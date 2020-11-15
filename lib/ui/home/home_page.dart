@@ -1,92 +1,117 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get_it/get_it.dart';
+import 'package:winkels_customer/data/models/City.dart';
+import 'package:winkels_customer/ui/address/select_address_page.dart';
+import 'package:winkels_customer/ui/home/home_cubit.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/card_store.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/category_item.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_card.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/search_text_field.dart';
 
-class HomePage extends StatelessWidget {
+import 'destination.dart';
+import 'destination_view.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
+  final _cubit = HomeCubit(GetIt.I.get());
+
+  @override
+  void dispose() {
+    _cubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    IndexedStack();
+    final currentAddress = _cubit.getCurrentAddress();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.location_on),
-                  SizedBox(
-                    width: 10,
+      appBar: AppBar(
+          title: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SelectAddressPage(
+                  currentCity: City(
+                    currentAddress.cityName,
+                    currentAddress.cityCode,
+                    currentAddress.countryCode,
                   ),
-                  Text('La Felicidad, Bogotá'),
-                  Icon(
-                    Icons.location_on,
-                    color: Colors.transparent,
-                  ),
-                ],
-              ),
-              Text(
-                'Categorias',
-                style: TextStyle(fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SearchTextField(
-                hintText: 'Buscar Categoria',
-              ),
-              CategoryCard(
-                text: 'Viveres',
-                imageAsset: 'assets/icons/ic_viveres.png',
-              ),
-              StoreCard(
-                nameStore: 'Tienda 1',
-              ),
-              ItemCard(
-                text: 'Huevos Blancos',
-                imageAsset: 'assets/images/img_egg.png',
-              ),
-              ItemShoppingCard(
-                cant: 20,
-                nameProduct: 'Pimentón rojo Pimentón ',
-                priceProduct: 1200,
-                imageAsset: 'assets/images/img_pimenton.png',
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              SearchTextField(
-                hintText: 'Buscar Categoria',
-              ),
-              CategoryCard(
-                text: 'Viveres',
-                imageAsset: 'assets/icons/ic_viveres.png',
-              ),
-              StoreCard(
-                nameStore: 'Tienda 1',
-              ),
-              ItemShoppingCard(
-                cant: 20,
-                nameProduct: 'Pimentón rojo Pimentón ',
-                priceProduct: 1200,
-                imageAsset: 'assets/images/img_pimenton.png',
-              ),
-              ItemCard(
-                text: 'Huevos Blancos',
-                imageAsset: 'assets/images/img_egg.png',
-              )
-            ],
-          ),
+                ),
+              ));
+        },
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.location_on),
+            SizedBox(width: 10),
+            Text('${currentAddress.address}, ${currentAddress.cityName}', style: TextStyle(color: Theme.of(context).primaryColor)),
+          ],
+        ),
+      )),
+      bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: true,
+        selectedItemColor: Theme.of(context).accentColor,
+        unselectedItemColor: Colors.black45,
+        currentIndex: _currentIndex,
+        onTap: (int index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: allDestinations.map((Destination destination) {
+          return BottomNavigationBarItem(icon: Icon(destination.icon), backgroundColor: destination.color, label: destination.title);
+        }).toList(),
+      ),
+      body: SafeArea(
+        top: false,
+        child: IndexedStack(
+          index: _currentIndex,
+          children: allDestinations.map<Widget>((Destination destination) {
+            return DestinationView(destination: destination);
+          }).toList(),
         ),
       ),
+    );
+  }
+
+  void asd() {
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SearchTextField(
+          hintText: 'Buscar Categoria',
+        ),
+        CategoryCard(
+          text: 'Viveres',
+          imageAsset: 'assets/icons/ic_viveres.png',
+        ),
+        StoreCard(
+          nameStore: 'Tienda 1',
+        ),
+        ItemCard(
+          text: 'Huevos Blancos',
+          imageAsset: 'assets/images/img_egg.png',
+        ),
+        ItemShoppingCard(
+          cant: 20,
+          nameProduct: 'Pimentón rojoPimentón',
+          priceProduct: 1200,
+          imageAsset: 'assets/images/img_pimenton.png',
+        ),
+        SizedBox(
+          height: 15,
+        )
+      ],
     );
   }
 }

@@ -30,6 +30,7 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
   @override
   void dispose() {
     _cubit.close();
+    _pinController.dispose();
     super.dispose();
   }
 

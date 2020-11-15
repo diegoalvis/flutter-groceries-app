@@ -77,7 +77,7 @@ class Repository {
     return _preferences.saveUserAddress(address);
   }
 
-  String getSelectedCity() {
-    return _preferences.getAddress()?.cityCode;
+  Address getSavedAddress() {
+    return _preferences.getAddress();
   }
 }

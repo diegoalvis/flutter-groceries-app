@@ -10,11 +10,10 @@ ThemeData lightTheme = ThemeData(
     accentColor: Color(0xff457BE0),
     accentColorBrightness: Brightness.light,
     bottomAppBarColor: Color(0xff6D42CE),
-    appBarTheme: AppBarTheme(color: Colors.white),
-    cardColor: Color(0xaaF5E0C3),
+    appBarTheme: AppBarTheme(elevation: 0, color: Colors.transparent),
+    cardColor: Color(0xff457BE0),
     dividerColor: Color(0x1f6D42CE),
-    focusColor: Color(0x1aF5E0C3)
-);
+    focusColor: Color(0x1aF5E0C3));
 
 ThemeData darkTheme = ThemeData.dark().copyWith(
     visualDensity: VisualDensity(vertical: 0.5, horizontal: 0.5),
@@ -27,5 +26,4 @@ ThemeData darkTheme = ThemeData.dark().copyWith(
     bottomAppBarColor: Color(0xff6D42CE),
     cardColor: Color(0xaa311F06),
     dividerColor: Color(0x1f6D42CE),
-    focusColor: Color(0x1a311F06)
-);
+    focusColor: Color(0x1a311F06));
