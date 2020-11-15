@@ -15,6 +15,7 @@ import 'ui/register/phone_number_page.dart';
 import 'ui/screens/account_page.dart';
 import 'ui/screens/home_page.dart';
 import 'ui/screens/my_car_page.dart';
+import 'ui/screens/profile_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
@@ -45,12 +46,12 @@ class MyApp extends StatelessWidget {
               theme: lightTheme,
               initialRoute: '/',
               routes: {
-                '/': (BuildContext context) => HomePage(),
+                '/': (BuildContext context) =>ProfilePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
                 '/select_address': (BuildContext context) => SelectAddressPage(),
-                '/home': (BuildContext context) => HomePage(),
+                // '/home': (BuildContext context) => HomePage(),
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_car': (BuildContext context) => MyCarPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
