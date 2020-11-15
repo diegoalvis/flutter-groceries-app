@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/data/models/Vendor.dart';
 
 class StoreCard extends StatelessWidget {
-  final String nameStore;
+  final Vendor vendor;
 
-  const StoreCard({
-    Key key,@required this.nameStore,
-  }) : super(key: key);
+  const StoreCard({Key key, @required this.vendor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class StoreCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset('assets/images/market.png'),
+          vendor.logo?.url != null ? NetworkImage(vendor.logo.url) : Image.asset('assets/images/market.png'),
           SizedBox(
             width: 10,
           ),
@@ -35,7 +34,10 @@ class StoreCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(nameStore, style: TextStyle(fontSize: 20),),
+                    Text(
+                      vendor.name,
+                      style: TextStyle(fontSize: 20),
+                    ),
                     Container(
                       child: Row(
                         children: [

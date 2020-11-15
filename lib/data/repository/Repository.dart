@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
 import 'package:winkels_customer/data/models/Address.dart';
+import 'package:winkels_customer/data/models/Vendor.dart';
 import 'package:winkels_customer/data/models/base_product.dart';
 import 'package:winkels_customer/data/preferences/preferences.dart';
 
@@ -15,6 +16,10 @@ class Repository {
 
   Future<List<BaseProduct>> getProducts(String vendorId) async {
     return _apiClient.getProducts(vendorId);
+  }
+
+  Future<List<Vendor>> getVendors() {
+    return _apiClient.getVendors(_preferences.getAddress()?.cityCode ?? '');
   }
 
   Future<bool> authenticateUser(String phoneNumber, String smsCode) async {

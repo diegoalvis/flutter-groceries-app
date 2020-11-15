@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:winkels_customer/ui/account/account_page.dart';
 import 'package:winkels_customer/ui/cart/my_cart_page.dart';
 import 'package:winkels_customer/ui/search/search_page.dart';
-import 'package:winkels_customer/ui/vendor/product_list_page.dart';
+import 'package:winkels_customer/ui/vendor/vendor_list_page.dart';
 
 import 'destination.dart';
 
@@ -23,8 +23,8 @@ class _DestinationViewState extends State<DestinationView> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
-            switch (settings.name) {
-              case '/':
+            switch (widget.destination.route) {
+              case '/vendor_list':
                 return VendorListPage(destination: widget.destination);
               case '/search':
                 return SearchPage(destination: widget.destination);

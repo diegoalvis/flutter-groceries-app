@@ -95,9 +95,6 @@ class _HomePageState extends State<HomePage> {
           text: 'Viveres',
           imageAsset: 'assets/icons/ic_viveres.png',
         ),
-        StoreCard(
-          nameStore: 'Tienda 1',
-        ),
         ItemCard(
           text: 'Huevos Blancos',
           imageAsset: 'assets/images/img_egg.png',

@@ -12,12 +12,24 @@ class AppModule {
     // core
     getIt.registerSingletonAsync<Preferences>(() async => Preferences().init());
     getIt.registerSingletonAsync<Dio>(() async {
-      BaseOptions options = BaseOptions(
+      Preferences pref = await getIt.getAsync<Preferences>();
+      Dio dio = Dio(BaseOptions(
         baseUrl: ApiClient.BASE_URL,
         connectTimeout: 5000,
         receiveTimeout: 3000,
-      );
-      return new Dio(options);
+      ));
+
+      dio.interceptors.add(InterceptorsWrapper(onRequest: (options) async {
+        // options.headers['Authorization'] = 'Bearer: ${pref.getAuthToken()}';
+        return options;
+      }, onError: (error) async {
+        if (error.response?.statusCode == 403 || error.response?.statusCode == 401) {
+          await pref.clearSession();
+        }
+        return error.response;
+      }));
+
+      return dio;
     });
 
     // Api

@@ -1,6 +1,7 @@
 import 'dart:convert' show utf8, base64;
 
 import 'package:dio/dio.dart';
+import 'package:winkels_customer/data/models/Vendor.dart';
 import 'package:winkels_customer/data/models/base_product.dart';
 
 class ApiClient {
@@ -11,6 +12,14 @@ class ApiClient {
   final Dio _dio;
 
   ApiClient(this._dio); // Local
+
+  Future<List<Vendor>> getVendors(String cityCode) async {
+    Response response = await _dio.get(BASE_URL + "/vendors");
+    print(response);
+    final vendorsJson = response.data as List;
+    final vendorList = vendorsJson.map((e) => Vendor.fromJson(e)).toList();
+    return vendorList;
+  }
 
   Future<List<BaseProduct>> getProducts(String vendorId) async {
     Response response = await _dio.get(BASE_URL + "/products");

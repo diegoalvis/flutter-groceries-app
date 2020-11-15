@@ -2,15 +2,14 @@ import 'package:winkels_customer/core/cubit/base_cubit.dart';
 import 'package:winkels_customer/core/cubit/base_state.dart';
 import 'package:winkels_customer/data/repository/Repository.dart';
 
-class ProductListCubit extends BaseCubit {
+class VendorListCubit extends BaseCubit {
 
-  ProductListCubit(Repository repository) : super(repository);
+  VendorListCubit(Repository repository) : super(repository);
 
-  Future<void> getProductList() async {
+  Future<void> getVendorList() async {
+    emit(BaseState(StateType.loading));
     try {
-      emit(BaseState(StateType.loading));
-      await Future.delayed(Duration(seconds: 2));
-      final res = await repository.getProducts("vendorId");
+      final res = await repository.getVendors();
       emit(BaseState(StateType.success, data: res));
     } catch (e) {
       emit(BaseState(StateType.error));
