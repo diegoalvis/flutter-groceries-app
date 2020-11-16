@@ -14,6 +14,7 @@ import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/register/phone_number_page.dart';
 // import 'ui/screens/my_car_page.dart';
+import 'ui/screens/checkout_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
 Future<void> main() async {
@@ -45,7 +46,10 @@ class MyApp extends StatelessWidget {
               theme: lightTheme,
               initialRoute: '/',
               routes: {
-                '/': (BuildContext context) => WelcomePage(),
+                '/': (BuildContext context) => CheckoutPage(),
+
+
+                // '/': (BuildContext context) => WelcomePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
