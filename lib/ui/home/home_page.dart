@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get_it/get_it.dart';
+import 'package:provider/provider.dart';
 import 'package:winkels_customer/data/models/City.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
+import 'package:winkels_customer/ui/cart/cart_model.dart';
 import 'package:winkels_customer/ui/home/home_cubit.dart';
 
 import 'destination.dart';
@@ -29,30 +31,34 @@ class _HomePageState extends State<HomePage> {
     final currentAddress = _cubit.getCurrentAddress();
     return Scaffold(
       appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Image.asset('assets/icons/app_icon.png'),
+          ),
           title: InkWell(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SelectAddressPage(
-                  currentCity: City(
-                    currentAddress.cityName,
-                    currentAddress.cityCode,
-                    currentAddress.countryCode,
-                  ),
-                ),
-              ));
-        },
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.location_on),
-            SizedBox(width: 10),
-            Text('${currentAddress.address}, ${currentAddress.cityName}', style: TextStyle(color: Theme.of(context).primaryColor)),
-          ],
-        ),
-      )),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SelectAddressPage(
+                      currentCity: City(
+                        currentAddress.cityName,
+                        currentAddress.cityCode,
+                        currentAddress.countryCode,
+                      ),
+                    ),
+                  ));
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.location_on),
+                SizedBox(width: 10),
+                Text('${currentAddress.address}, ${currentAddress.cityName}', style: TextStyle(color: Colors.black54)),
+              ],
+            ),
+          )),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         selectedItemColor: Theme.of(context).accentColor,
@@ -64,7 +70,33 @@ class _HomePageState extends State<HomePage> {
           });
         },
         items: allDestinations.map((Destination destination) {
-          return BottomNavigationBarItem(icon: Icon(destination.icon), backgroundColor: destination.color, label: destination.title);
+          return BottomNavigationBarItem(
+              icon: Stack(
+                children: <Widget>[
+                  Icon(destination.icon),
+                  Consumer<CartModel>(
+                    builder: (context, cart, child) {
+                      if (cart.items.isNotEmpty && destination.route == '/my_cart')
+                        return Positioned(
+                          top: 0.0,
+                          right: 0.0,
+                          child: Container(
+                            margin: EdgeInsets.only(left: 2),
+                            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                            decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+                            alignment: Alignment.center,
+                            child: SizedBox(),
+                          ),
+                        );
+                      else {
+                        return SizedBox();
+                      }
+                    },
+                  ),
+                ],
+              ),
+              backgroundColor: destination.color,
+              label: destination.title);
         }).toList(),
       ),
       body: SafeArea(

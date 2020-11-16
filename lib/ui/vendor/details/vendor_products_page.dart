@@ -62,7 +62,9 @@ class _VendorProductsPageState extends State<VendorProductsPage> {
                         itemCount: data.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                         itemBuilder: (context, index) {
-                          return ItemCard(product: data[index]);
+                          return ItemCard(
+                            product: data[index],
+                          );
                         },
                       );
                     }

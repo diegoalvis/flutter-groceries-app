@@ -1,27 +1,22 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
+import 'package:winkels_customer/data/models/Vendor.dart';
 import 'package:winkels_customer/data/models/VendorProduct.dart';
+import 'package:winkels_customer/ui/cart/cart_model.dart';
 
-import 'counter_item.dart';
-
-class ItemCard extends StatefulWidget {
+class ItemCard extends StatelessWidget {
   final VendorProduct product;
-  final ValueChanged<int> onQuantityChanged;
+  final Vendor vendor;
 
-  const ItemCard({Key key, @required this.product, this.onQuantityChanged}) : super(key: key);
-
-  @override
-  _ItemCardState createState() => _ItemCardState();
-}
-
-class _ItemCardState extends State<ItemCard> {
-  int _quantity = 0;
+  const ItemCard({Key key, this.product, this.vendor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final basicInfo = widget.product.product;
+    var cart = context.watch<CartModel>();
+    var quantity = cart.items.entries.firstWhere((element) => element.key.id == product.id, orElse: () => null)?.value ?? 0;
+    final basicInfo = product.product;
     return Container(
       margin: EdgeInsets.all(6.0),
       decoration: BoxDecoration(
@@ -33,7 +28,6 @@ class _ItemCardState extends State<ItemCard> {
       padding: EdgeInsets.only(left: 16, right: 16),
       height: 300,
       width: 180,
-      //Creo q no es necesario el ancho cuando se ponga en el grid
       child: Stack(
         children: [
           Column(
@@ -54,7 +48,7 @@ class _ItemCardState extends State<ItemCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$ ${widget.product.price}",
+                        "\$ ${product.price}",
                         style: TextStyle(fontSize: 18),
                       ),
                       Padding(
@@ -63,10 +57,8 @@ class _ItemCardState extends State<ItemCard> {
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () => setState(() {
-                                _quantity = max(0, _quantity - 1);
-                              }),
+                            InkWell(
+                              onTap: () => cart.decrease(product, vendor: vendor),
                               child: Container(
                                 padding: EdgeInsets.all(6),
                                 decoration: BoxDecoration(
@@ -79,10 +71,8 @@ class _ItemCardState extends State<ItemCard> {
                               ),
                             ),
                             SizedBox(width: 4),
-                            GestureDetector(
-                              onTap: () => setState(() {
-                                _quantity = min(99, _quantity + 1);
-                              }),
+                            InkWell(
+                              onTap: () => cart.increase(product, vendor: vendor),
                               child: Container(
                                 padding: EdgeInsets.all(6),
                                 decoration: BoxDecoration(
@@ -103,19 +93,19 @@ class _ItemCardState extends State<ItemCard> {
               ))
             ],
           ),
-          _quantity == 0
+          quantity == 0
               ? SizedBox()
               : Positioned(
-                top: 0.0,
-                right: 0.0,
-                child: Container(
-                  margin: EdgeInsets.all(4),
-                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
-                  alignment: Alignment.center,
-                  child: Text('$_quantity', style: TextStyle(color: Colors.white)),
-                ),
-              )
+                  top: 0.0,
+                  right: 0.0,
+                  child: Container(
+                    margin: EdgeInsets.all(4),
+                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.red),
+                    alignment: Alignment.center,
+                    child: Text('$quantity', style: TextStyle(color: Colors.white)),
+                  ),
+                )
         ],
       ),
     );

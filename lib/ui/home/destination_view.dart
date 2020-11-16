@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/ui/account/account_page.dart';
-import 'package:winkels_customer/ui/cart/my_cart_page.dart';
+import 'package:winkels_customer/ui/cart/cart_page.dart';
 import 'package:winkels_customer/ui/search/search_page.dart';
 import 'package:winkels_customer/ui/vendor/list/vendor_list_page.dart';
 
@@ -25,7 +25,7 @@ class _DestinationViewState extends State<DestinationView> {
       case '/search':
         return SearchPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
       case '/my_cart':
-        return MyCartPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
+        return CartPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
       case '/account':
         return AccountPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
       default:
