@@ -16,8 +16,8 @@ class AppModule {
       Preferences pref = await getIt.getAsync<Preferences>();
       Dio dio = Dio(BaseOptions(
         baseUrl: ApiClient.BASE_URL,
-        connectTimeout: 5000,
-        receiveTimeout: 3000,
+        connectTimeout: 10000,
+        receiveTimeout: 5000,
       ));
       dio.interceptors.add(PrettyDioLogger());
       dio.interceptors.add(InterceptorsWrapper(onRequest: (options) async {

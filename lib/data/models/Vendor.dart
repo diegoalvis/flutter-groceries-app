@@ -21,9 +21,9 @@ class Vendor {
   @JsonKey(nullable: true)
   final Schedule hoursOfOperation;
   @JsonKey(nullable: true)
-  final List<VendorCategory> vendorCategory;
+  final List<VendorCategory> vendorCategories;
 
-  Vendor(this.id, this.name, this.description, this.logo, this.location, this.hoursOfOperation, this.vendorCategory, this.deliveryFee);
+  Vendor(this.id, this.name, this.description, this.logo, this.location, this.hoursOfOperation, this.vendorCategories, this.deliveryFee);
 
   factory Vendor.fromJson(Map<String, dynamic> json) => _$VendorFromJson(json);
 

@@ -7,10 +7,11 @@ import 'package:winkels_customer/data/models/BaseProduct.dart';
 import 'package:winkels_customer/data/models/VendorProduct.dart';
 
 class ApiClient {
-  static const String BASE_URL = "http://10.0.2.2:1337";
-
-  // static const String BASE_URL = "https://winkels-strapi.herokuapp.com/"; // Testing Heroku
-  // static const String BASE_URL = "https://winkels-strapi.herokuapp.com/"; // Prod
+  // static const String BASE_URL = "http://10.0.2.2:1337";
+  // Testing Heroku
+  static const String BASE_URL = "https://winkels-strapi.herokuapp.com";
+  // Prod
+  // static const String BASE_URL = "https://winkels-strapi.herokuapp.com";
   final Dio _dio;
 
   ApiClient(this._dio); // Local

@@ -22,7 +22,7 @@ class CategoryCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Image.network(ApiClient.BASE_URL + category.image.url),
+            category?.image?.url == null ? SizedBox():  Image.network(ApiClient.BASE_URL + category.image.url),
             Text(category.descriptionCategory),
           ],
         ),

@@ -20,7 +20,7 @@ Vendor _$VendorFromJson(Map<String, dynamic> json) {
     json['hours_of_operation'] == null
         ? null
         : Schedule.fromJson(json['hours_of_operation'] as Map<String, dynamic>),
-    (json['vendor_category'] as List)
+    (json['vendor_categories'] as List)
         ?.map((e) => e == null
             ? null
             : VendorCategory.fromJson(e as Map<String, dynamic>))
@@ -37,5 +37,5 @@ Map<String, dynamic> _$VendorToJson(Vendor instance) => <String, dynamic>{
       'logo': instance.logo,
       'location': instance.location,
       'hours_of_operation': instance.hoursOfOperation,
-      'vendor_category': instance.vendorCategory,
+      'vendor_categories': instance.vendorCategories,
     };

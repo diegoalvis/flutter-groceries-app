@@ -35,7 +35,7 @@ class _VendorProductsPageState extends State<VendorProductsPage> {
   Widget build(BuildContext context) {
     final Vendor vendor = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      appBar: AppBar(title: Text('${vendor.name}')),
+      appBar: AppBar(elevation: 0),
       body: Column(
         children: [
           Padding(
