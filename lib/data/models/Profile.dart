@@ -3,7 +3,7 @@ import 'package:winkels_customer/data/models/Address.dart';
 
 part 'Profile.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Profile {
   final int id;
   final String name;

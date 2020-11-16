@@ -8,11 +8,12 @@ import 'server_image.dart';
 
 part 'Vendor.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Vendor {
   final int id;
   final String name;
   final String description;
+  final double deliveryFee;
   @JsonKey(nullable: true)
   final ServerImage logo;
   @JsonKey(nullable: true)
@@ -22,7 +23,7 @@ class Vendor {
   @JsonKey(nullable: true)
   final List<VendorCategory> vendorCategories;
 
-  Vendor(this.id, this.name, this.description, this.logo, this.location, this.hoursOfOperation, this.vendorCategories);
+  Vendor(this.id, this.name, this.description, this.logo, this.location, this.hoursOfOperation, this.vendorCategories, this.deliveryFee);
 
   factory Vendor.fromJson(Map<String, dynamic> json) => _$VendorFromJson(json);
 

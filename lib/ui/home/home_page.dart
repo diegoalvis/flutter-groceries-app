@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/data/models/City.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/home/home_cubit.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/card_store.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/category_item.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_card.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart';
@@ -77,7 +76,16 @@ class _HomePageState extends State<HomePage> {
         child: IndexedStack(
           index: _currentIndex,
           children: allDestinations.map<Widget>((Destination destination) {
-            return DestinationView(destination: destination);
+            return DestinationView(
+                destination: destination,
+                onChangeCurrentPage: (String route) {
+                  final nextIndex = allDestinations.indexWhere((Destination element) => element.route == route);
+                  if (nextIndex >= 0) {
+                    setState(() {
+                      _currentIndex = nextIndex;
+                    });
+                  }
+                });
           }).toList(),
         ),
       ),

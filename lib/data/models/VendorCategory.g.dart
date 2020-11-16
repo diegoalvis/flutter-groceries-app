@@ -9,7 +9,7 @@ part of 'VendorCategory.dart';
 VendorCategory _$VendorCategoryFromJson(Map<String, dynamic> json) {
   return VendorCategory(
     json['id'] as int,
-    json['descriptionCategory'] as String,
+    json['description_category'] as String,
     (json['vendors'] as List).map((e) => e as String).toList(),
     json['image'] == null
         ? null
@@ -20,7 +20,7 @@ VendorCategory _$VendorCategoryFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$VendorCategoryToJson(VendorCategory instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'descriptionCategory': instance.descriptionCategory,
+      'description_category': instance.descriptionCategory,
       'vendors': instance.vendors,
       'image': instance.image,
     };

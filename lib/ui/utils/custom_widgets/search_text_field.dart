@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 class SearchTextField extends StatelessWidget {
   final String hintText;
 
-  const SearchTextField({Key key, @required this.hintText});
+  final bool enabled;
+
+  const SearchTextField({Key key, @required this.hintText, this.enabled = true});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      enabled: enabled,
       style: TextStyle(
         color: Colors.black87,
       ),

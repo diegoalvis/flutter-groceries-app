@@ -1,14 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/cart/my_cart_page.dart';
+import 'package:winkels_customer/ui/home/home_page.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/sing_in_page.dart';
-// import 'package:winkels_customer/ui/screens/successful_order_page.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
@@ -16,7 +14,6 @@ import 'ui/account/account_page.dart';
 import 'ui/register/phone_number_page.dart';
 // import 'ui/screens/account_page.dart';
 import 'ui/screens/change_password.dart';
-import 'ui/screens/home_page.dart';
 // import 'ui/screens/my_car_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
@@ -49,7 +46,7 @@ class MyApp extends StatelessWidget {
               theme: lightTheme,
               initialRoute: '/',
               routes: {
-                '/': (BuildContext context) => ChangePassword(),
+                '/': (BuildContext context) => WelcomePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
@@ -58,8 +55,6 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_car': (BuildContext context) => MyCartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
-
-                // '/welcome': (BuildContext context) => WelcomePage(),
               },
             );
           }),

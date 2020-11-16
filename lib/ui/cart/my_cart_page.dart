@@ -7,8 +7,9 @@ import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart
 class MyCartPage extends StatelessWidget {
 
   final Destination destination;
+  final Function(String route) onChangeCurrentPage;
 
-  const MyCartPage({Key key, this.destination}) : super(key: key);
+  const MyCartPage({Key key, this.destination, this.onChangeCurrentPage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

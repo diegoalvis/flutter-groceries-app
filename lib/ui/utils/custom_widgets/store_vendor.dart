@@ -1,28 +1,32 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/data/api/api_client.dart';
 import 'package:winkels_customer/data/models/Vendor.dart';
 
-class StoreCard extends StatelessWidget {
+class VendorCard extends StatelessWidget {
   final Vendor vendor;
 
-  const StoreCard({Key key, @required this.vendor}) : super(key: key);
+  const VendorCard({Key key, @required this.vendor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 120,
-      padding: const EdgeInsets.all(20.0),
+      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      padding: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.orange),
         color: Colors.greenAccent,
         borderRadius: BorderRadius.all(
-          Radius.circular(20.0),
+          Radius.circular(24.0),
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          vendor.logo?.url != null ? NetworkImage(vendor.logo.url) : Image.asset('assets/images/market.png'),
+          vendor.logo?.url != null ? Image.network(ApiClient.BASE_URL + vendor.logo.url) : Image.asset('assets/images/market.png'),
           SizedBox(
             width: 10,
           ),
@@ -41,7 +45,7 @@ class StoreCard extends StatelessWidget {
                     Container(
                       child: Row(
                         children: [
-                          Text('4.5'),
+                          Text((Random().nextInt(10).toDouble() / 2.0).toString()),
                           Icon(
                             Icons.star,
                             color: Colors.yellow,
@@ -51,8 +55,8 @@ class StoreCard extends StatelessWidget {
                     )
                   ],
                 ),
-                Text('15 - 20 min - 0.4 kms '),
-                Text('\$ 500 envío'),
+                Text('${vendor.hoursOfOperation?.hours ?? ''} ${vendor.hoursOfOperation?.days?.toLowerCase() ?? ''}'),
+                Text('\$ ${vendor.deliveryFee?.toInt()} envío'),
               ],
             ),
           )

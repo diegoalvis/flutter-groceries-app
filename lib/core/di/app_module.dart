@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
 import 'package:winkels_customer/data/preferences/preferences.dart';
 import 'package:winkels_customer/data/repository/Repository.dart';
@@ -18,7 +19,7 @@ class AppModule {
         connectTimeout: 5000,
         receiveTimeout: 3000,
       ));
-
+      dio.interceptors.add(PrettyDioLogger());
       dio.interceptors.add(InterceptorsWrapper(onRequest: (options) async {
         // options.headers['Authorization'] = 'Bearer: ${pref.getAuthToken()}';
         return options;

@@ -9,13 +9,13 @@ part of 'City.dart';
 City _$CityFromJson(Map<String, dynamic> json) {
   return City(
     json['name'] as String,
-    json['cityCode'] as String,
-    json['countryCode'] as String,
+    json['city_code'] as String,
+    json['country_code'] as String,
   );
 }
 
 Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{
       'name': instance.name,
-      'cityCode': instance.cityCode,
-      'countryCode': instance.countryCode,
+      'city_code': instance.cityCode,
+      'country_code': instance.countryCode,
     };

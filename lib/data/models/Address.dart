@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'Address.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Address {
   final String address;
   @JsonKey(nullable: true)

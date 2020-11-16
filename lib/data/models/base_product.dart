@@ -3,7 +3,7 @@ import 'package:winkels_customer/data/models/server_image.dart';
 
 part 'base_product.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BaseProduct {
   final int id;
   final String name;

@@ -5,8 +5,9 @@ import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 class AccountPage extends StatelessWidget {
 
   final Destination destination;
+  final Function(String route) onChangeCurrentPage;
 
-  const AccountPage({Key key, this.destination}) : super(key: key);
+  const AccountPage({Key key, this.destination, this.onChangeCurrentPage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

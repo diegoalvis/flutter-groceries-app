@@ -4,7 +4,7 @@ import 'server_image.dart';
 
 part 'VendorCategory.g.dart';
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VendorCategory {
   final int id;
   final String descriptionCategory;

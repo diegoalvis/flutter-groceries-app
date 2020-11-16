@@ -17,14 +17,15 @@ Vendor _$VendorFromJson(Map<String, dynamic> json) {
     json['location'] == null
         ? null
         : Address.fromJson(json['location'] as Map<String, dynamic>),
-    json['hoursOfOperation'] == null
+    json['hours_of_operation'] == null
         ? null
-        : Schedule.fromJson(json['hoursOfOperation'] as Map<String, dynamic>),
-    (json['vendorCategories'] as List)
+        : Schedule.fromJson(json['hours_of_operation'] as Map<String, dynamic>),
+    (json['vendor_categories'] as List)
         ?.map((e) => e == null
             ? null
             : VendorCategory.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    (json['delivery_fee'] as num).toDouble(),
   );
 }
 
@@ -32,8 +33,9 @@ Map<String, dynamic> _$VendorToJson(Vendor instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'delivery_fee': instance.deliveryFee,
       'logo': instance.logo,
       'location': instance.location,
-      'hoursOfOperation': instance.hoursOfOperation,
-      'vendorCategories': instance.vendorCategories,
+      'hours_of_operation': instance.hoursOfOperation,
+      'vendor_categories': instance.vendorCategories,
     };

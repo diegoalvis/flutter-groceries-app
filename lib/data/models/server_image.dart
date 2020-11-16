@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'server_image.g.dart';
 
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class ServerImage {
   final String url;
 

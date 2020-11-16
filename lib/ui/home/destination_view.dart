@@ -7,9 +7,10 @@ import 'package:winkels_customer/ui/vendor/vendor_list_page.dart';
 import 'destination.dart';
 
 class DestinationView extends StatefulWidget {
-  const DestinationView({Key key, this.destination}) : super(key: key);
+  const DestinationView({Key key, this.destination, this.onChangeCurrentPage}) : super(key: key);
 
   final Destination destination;
+  final Function(String route) onChangeCurrentPage;
 
   @override
   _DestinationViewState createState() => _DestinationViewState();
@@ -18,26 +19,17 @@ class DestinationView extends StatefulWidget {
 class _DestinationViewState extends State<DestinationView> {
   @override
   Widget build(BuildContext context) {
-    return Navigator(
-      onGenerateRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (BuildContext context) {
-            switch (widget.destination.route) {
-              case '/vendor_list':
-                return VendorListPage(destination: widget.destination);
-              case '/search':
-                return SearchPage(destination: widget.destination);
-              case '/my_cart':
-                return MyCartPage(destination: widget.destination);
-              case '/account':
-                return AccountPage(destination: widget.destination);
-              default:
-                return VendorListPage(destination: widget.destination);
-            }
-          },
-        );
-      },
-    );
+    switch (widget.destination.route) {
+      case '/vendor_list':
+        return VendorListPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
+      case '/search':
+        return SearchPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
+      case '/my_cart':
+        return MyCartPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
+      case '/account':
+        return AccountPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
+      default:
+        return VendorListPage(destination: widget.destination, onChangeCurrentPage: widget.onChangeCurrentPage);
+    }
   }
 }
