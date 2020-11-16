@@ -8,11 +8,10 @@ part 'VendorCategory.g.dart';
 class VendorCategory {
   final int id;
   final String descriptionCategory;
-  final List<String> vendors;
   @JsonKey(nullable: true)
   final ServerImage image;
 
-  VendorCategory(this.id, this.descriptionCategory, this.vendors, this.image);
+  VendorCategory(this.id, this.descriptionCategory, this.image);
 
   factory VendorCategory.fromJson(Map<String, dynamic> json) => _$VendorCategoryFromJson(json);
 

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:winkels_customer/data/models/server_image.dart';
 
-part 'base_product.g.dart';
+part 'BaseProduct.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class BaseProduct {

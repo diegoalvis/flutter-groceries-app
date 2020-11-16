@@ -7,13 +7,12 @@ import 'package:winkels_customer/ui/cart/my_cart_page.dart';
 import 'package:winkels_customer/ui/home/home_page.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/sing_in_page.dart';
+import 'package:winkels_customer/ui/vendor/details/vendor_products_page.dart';
 import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 
 import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/register/phone_number_page.dart';
-// import 'ui/screens/account_page.dart';
-import 'ui/screens/change_password.dart';
 // import 'ui/screens/my_car_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
@@ -53,8 +52,20 @@ class MyApp extends StatelessWidget {
                 '/select_address': (BuildContext context) => SelectAddressPage(),
                 '/home': (BuildContext context) => HomePage(),
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
-                '/my_car': (BuildContext context) => MyCartPage(),
+                '/my_cart': (BuildContext context) => MyCartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
+              },
+              onGenerateRoute: (settings) {
+                Widget destinationRoute;
+                switch (settings.name) {
+                  case '/vendor_products':
+                    destinationRoute = VendorProductsPage();
+                    break;
+                  default:
+                    destinationRoute = WelcomePage();
+                    break;
+                }
+                return MaterialPageRoute(builder: (context) => destinationRoute, settings: settings);
               },
             );
           }),

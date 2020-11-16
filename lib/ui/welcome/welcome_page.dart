@@ -4,10 +4,20 @@ import 'package:winkels_customer/data/preferences/preferences.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 
-class WelcomePage extends StatelessWidget {
+class WelcomePage extends StatefulWidget {
+  @override
+  _WelcomePageState createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  @override
+  void initState() {
+    validateUserAuth(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    validateUserAuth(context);
     return Scaffold(
         body: Stack(
       children: [
@@ -55,9 +65,9 @@ class WelcomePage extends StatelessWidget {
     ));
   }
 
-  Future<void> validateUserAuth(BuildContext context) async {
+  Future validateUserAuth(BuildContext context) async {
     final pref = await GetIt.I.getAsync<Preferences>();
-    if (pref.getSession() && pref.getAuthToken() != null) {
+    if (pref.isUserLoggedIn() && pref.getAuthToken() != null) {
       Navigator.pushReplacementNamed(context, pref.getAddress() != null ? '/home' : '/select_address');
     }
   }

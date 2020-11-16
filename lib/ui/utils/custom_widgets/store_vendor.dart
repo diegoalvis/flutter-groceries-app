@@ -11,56 +11,70 @@ class VendorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 120,
-      margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
-      padding: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.orange),
-        color: Colors.greenAccent,
-        borderRadius: BorderRadius.all(
-          Radius.circular(24.0),
-        ),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          vendor.logo?.url != null ? Image.network(ApiClient.BASE_URL + vendor.logo.url) : Image.asset('assets/images/market.png'),
-          SizedBox(
-            width: 10,
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, '/vendor_products', arguments: vendor);
+      },
+      child: Container(
+        height: 120,
+        margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+        padding: const EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.orange),
+          color: Colors.greenAccent,
+          borderRadius: BorderRadius.all(
+            Radius.circular(24.0),
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      vendor.name,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          Text((Random().nextInt(10).toDouble() / 2.0).toString()),
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          )
-                        ],
-                      ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Hero(
+              child: vendor.logo?.url != null
+                  ? Image.network(
+                      ApiClient.BASE_URL + vendor.logo.url,
                     )
-                  ],
-                ),
-                Text('${vendor.hoursOfOperation?.hours ?? ''} ${vendor.hoursOfOperation?.days?.toLowerCase() ?? ''}'),
-                Text('\$ ${vendor.deliveryFee?.toInt()} envío'),
-              ],
+                  : Image.asset(
+                      'assets/images/market.png',
+                    ),
+              tag: vendor.id,
             ),
-          )
-        ],
+            SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        vendor.name,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            Text((Random().nextInt(10).toDouble() / 2.0).toString()),
+                            Icon(
+                              Icons.star,
+                              color: Colors.yellow,
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Text('${vendor.hoursOfOperation?.hours ?? ''} ${vendor.hoursOfOperation?.days?.toLowerCase() ?? ''}'),
+                  Text('\$ ${vendor.deliveryFee?.toInt()} envío'),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -4,10 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:winkels_customer/data/models/City.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/home/home_cubit.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/category_item.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/item_card.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/item_shopping_card.dart';
-import 'package:winkels_customer/ui/utils/custom_widgets/search_text_field.dart';
 
 import 'destination.dart';
 import 'destination_view.dart';
@@ -89,34 +85,6 @@ class _HomePageState extends State<HomePage> {
           }).toList(),
         ),
       ),
-    );
-  }
-
-  void asd() {
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SearchTextField(
-          hintText: 'Buscar Categoria',
-        ),
-        CategoryCard(
-          text: 'Viveres',
-          imageAsset: 'assets/icons/ic_viveres.png',
-        ),
-        ItemCard(
-          text: 'Huevos Blancos',
-          imageAsset: 'assets/images/img_egg.png',
-        ),
-        ItemShoppingCard(
-          cant: 20,
-          nameProduct: 'Pimentón rojoPimentón',
-          priceProduct: 1200,
-          imageAsset: 'assets/images/img_pimenton.png',
-        ),
-        SizedBox(
-          height: 15,
-        )
-      ],
     );
   }
 }

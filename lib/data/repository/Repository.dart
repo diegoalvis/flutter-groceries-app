@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
 import 'package:winkels_customer/data/models/Address.dart';
 import 'package:winkels_customer/data/models/Vendor.dart';
-import 'package:winkels_customer/data/models/base_product.dart';
+import 'package:winkels_customer/data/models/VendorCategory.dart';
+import 'package:winkels_customer/data/models/BaseProduct.dart';
+import 'package:winkels_customer/data/models/VendorProduct.dart';
 import 'package:winkels_customer/data/preferences/preferences.dart';
 
 class Repository {
@@ -14,12 +16,16 @@ class Repository {
 
   Repository(this._apiClient, this._preferences);
 
-  Future<List<BaseProduct>> getProducts(String vendorId) async {
+  Future<List<VendorProduct>> getProducts(int vendorId) async {
     return _apiClient.getProducts(vendorId);
   }
 
   Future<List<Vendor>> getVendors() {
     return _apiClient.getVendors(_preferences.getAddress()?.cityCode ?? '');
+  }
+
+  Future<List<VendorCategory>> getCategories() {
+    return _apiClient.getCategories();
   }
 
   Future<bool> authenticateUser(String phoneNumber, String smsCode) async {
@@ -75,7 +81,7 @@ class Repository {
   }
 
   void saveUserSession() {
-    _preferences.loginUser();
+    _preferences.setUserLoggedIn(true);
   }
 
   Future<bool> saveUserAddress(Address address) {
@@ -85,4 +91,6 @@ class Repository {
   Address getSavedAddress() {
     return _preferences.getAddress();
   }
+
+
 }

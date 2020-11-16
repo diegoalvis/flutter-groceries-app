@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:winkels_customer/ui/account/account_page.dart';
 import 'package:winkels_customer/ui/cart/my_cart_page.dart';
 import 'package:winkels_customer/ui/search/search_page.dart';
-import 'package:winkels_customer/ui/vendor/vendor_list_page.dart';
+import 'package:winkels_customer/ui/vendor/list/vendor_list_page.dart';
 
 import 'destination.dart';
 

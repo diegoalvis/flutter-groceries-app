@@ -21,11 +21,13 @@ class AppModule {
       ));
       dio.interceptors.add(PrettyDioLogger());
       dio.interceptors.add(InterceptorsWrapper(onRequest: (options) async {
-        // options.headers['Authorization'] = 'Bearer: ${pref.getAuthToken()}';
+        if (pref.getAuthToken() != null && pref.getAuthToken().isNotEmpty) {
+          options.headers['Authorization'] = 'Bearer ${pref.getAuthToken()}';
+        }
         return options;
       }, onError: (error) async {
-        if (error.response?.statusCode == 403 || error.response?.statusCode == 401) {
-          await pref.clearSession();
+        if (pref.getAuthToken() != null && error.response?.statusCode == 401) {
+            await pref.clearSession();
         }
         return error.response;
       }));

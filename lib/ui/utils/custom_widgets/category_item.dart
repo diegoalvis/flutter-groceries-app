@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:winkels_customer/data/api/api_client.dart';
+import 'package:winkels_customer/data/models/VendorCategory.dart';
 
 class CategoryCard extends StatelessWidget {
-  final String text;
-  final String imageAsset;
-  
-  
-  const CategoryCard({
-    Key key, @required this.text, @required this.imageAsset,
-  }) : super(key: key);
+  final VendorCategory category;
+
+  const CategoryCard({Key key, @required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +22,8 @@ class CategoryCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Image.asset(imageAsset),
-            Text(text),
+            Image.network(ApiClient.BASE_URL + category.image.url),
+            Text(category.descriptionCategory),
           ],
         ),
       ),

@@ -35,13 +35,13 @@ class Preferences {
     }
   }
 
-  Future<bool> loginUser() async {
-    return _preferences.setBool(USER_LOGGED_IN, true);
+  Future<bool> setUserLoggedIn(bool loggedIn) async {
+    return _preferences.setBool(USER_LOGGED_IN, loggedIn);
   }
 
-  bool getSession() {
+  bool isUserLoggedIn() {
     try {
-      return _preferences.getBool(USER_LOGGED_IN);
+      return _preferences.getBool(USER_LOGGED_IN) ?? false;
     } catch (e) {
       return false;
     }
@@ -59,8 +59,9 @@ class Preferences {
     }
   }
 
-  Future<void> clearSession() async {
-    await _preferences.setBool(USER_LOGGED_IN, false);
+  Future<bool> clearSession() async {
+    await setUserLoggedIn(false);
+    return _preferences.setString(AUTH_TOKEN, null);
   }
 
   Future<bool> saveUserAddress(Address address) async {

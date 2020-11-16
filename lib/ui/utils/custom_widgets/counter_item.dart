@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CounterItem extends StatelessWidget {
-  final int cant;
+  final int quantity;
+  final ValueChanged<int> onQuantityChanged;
 
   const CounterItem({
     Key key,
-    this.cant,
+    this.quantity = 0,
+    this.onQuantityChanged,
   }) : super(key: key);
 
   @override
@@ -16,7 +18,7 @@ class CounterItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () {},
+            onTap: () => onQuantityChanged(quantity + 1),
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
@@ -34,14 +36,14 @@ class CounterItem extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 4),
                 child: Text(
-                  cant.toString(),
+                  quantity.toString(),
                   style: TextStyle(color: Color(0xff164193), fontSize: 18),
                 ),
               ),
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () => onQuantityChanged(quantity - 1),
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
