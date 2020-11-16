@@ -7,11 +7,15 @@ import 'counter_item.dart';
 class ItemShoppingCard extends StatelessWidget {
   final int quantity;
   final VendorProduct product;
+  final ValueChanged<int> onQuantityChanged;
+  final Function onRemoveItem;
 
   const ItemShoppingCard({
     Key key,
     @required this.quantity,
     @required this.product,
+    @required this.onQuantityChanged,
+    this.onRemoveItem,
   }) : super(key: key);
 
   @override
@@ -47,9 +51,12 @@ class ItemShoppingCard extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        Icon(
-                          Icons.close,
-                          color: Colors.black38,
+                        InkWell(
+                          onTap: onRemoveItem,
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.black38,
+                          ),
                         ),
                       ],
                     ),
@@ -61,6 +68,7 @@ class ItemShoppingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CounterItem(
+                          onQuantityChanged: onQuantityChanged,
                           quantity: quantity,
                         ),
                         Text(

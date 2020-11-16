@@ -18,7 +18,7 @@ class CounterItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-            onTap: () => onQuantityChanged(quantity + 1),
+            onTap: () => onQuantityChanged(quantity - 1),
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
@@ -43,7 +43,7 @@ class CounterItem extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () => onQuantityChanged(quantity - 1),
+            onTap: () => onQuantityChanged(quantity + 1),
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
