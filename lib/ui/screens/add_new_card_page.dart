@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_model.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:awesome_card/awesome_card.dart';
 
 class AddNewCardPage extends StatefulWidget {
   @override
@@ -22,7 +23,7 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+              padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
               child: Row(
                 children: [
                   Text(
@@ -35,7 +36,7 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       debugPrint('agregar neuva tarjeta');
                     },
                     child: Row(
@@ -51,12 +52,17 @@ class _AddNewCardPageState extends State<AddNewCardPage> {
                 ],
               ),
             ),
-            CreditCardWidget(
+            CreditCard(
               cardNumber: cardNumber,
-              expiryDate: expiryDate,
+              cardExpiry: expiryDate,
               cardHolderName: cardHolderName,
-              cvvCode: cvvCode,
-              showBackView: isCvvFocused, //true when you want to show cvv(back) view
+              cvv: cvvCode,
+              bankName: "Axis Bank",
+              // Optional if you want to override Card Type
+              showBackSide: false,
+              frontBackground: CardBackgrounds.black,
+              backBackground: CardBackgrounds.white,
+              showShadow: true,
             ),
             Expanded(
               child: SingleChildScrollView(
