@@ -16,7 +16,6 @@ import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/cart/cart_model.dart';
 import 'ui/register/phone_number_page.dart';
-import 'ui/screens/add_new_card_page.dart';
 import 'ui/screens/checkout_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
@@ -65,7 +64,6 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
-                '/add_new_card_page': (BuildContext context) => AddNewCardPage(),
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;
