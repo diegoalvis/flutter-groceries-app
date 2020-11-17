@@ -17,6 +17,7 @@ import 'ui/cart/cart_model.dart';
 import 'ui/register/phone_number_page.dart';
 
 // import 'ui/screens/my_car_page.dart';
+import 'ui/screens/add_new_card_page.dart';
 import 'ui/screens/checkout_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
@@ -52,12 +53,9 @@ class MyApp extends StatelessWidget {
               title: 'Winkels',
               darkTheme: darkTheme,
               theme: lightTheme,
-              initialRoute: '/',
+              initialRoute: '/add_new_card_page',
               routes: {
-                '/': (BuildContext context) => CheckoutPage(),
-
-
-                // '/': (BuildContext context) => WelcomePage(),
+                '/': (BuildContext context) => WelcomePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
@@ -66,6 +64,7 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
+                '/add_new_card_page': (BuildContext context) => AddNewCardPage(),
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;
