@@ -51,41 +51,38 @@ class ItemCard extends StatelessWidget {
                         "\$ ${product.price}",
                         style: TextStyle(fontSize: 18),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () => cart.decrease(product, vendor: vendor),
-                              child: Container(
-                                padding: EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black26),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(12.0),
-                                  ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () => cart.decrease(product, vendor: vendor),
+                            child: Container(
+                              padding: EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black26),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12.0),
                                 ),
-                                child: Icon(Icons.remove, color: Colors.red),
                               ),
+                              child: Icon(Icons.remove, color: Colors.red),
                             ),
-                            SizedBox(width: 4),
-                            InkWell(
-                              onTap: () => cart.increase(product, vendor: vendor),
-                              child: Container(
-                                padding: EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black26),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(12.0),
-                                  ),
+                          ),
+                          SizedBox(width: 4),
+                          InkWell(
+                            onTap: () => cart.increase(product, vendor: vendor),
+                            child: Container(
+                              padding: EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black26),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12.0),
                                 ),
-                                child: Icon(Icons.add, color: Colors.green),
                               ),
-                            )
-                          ],
-                        ),
+                              child: Icon(Icons.add, color: Colors.green),
+                            ),
+                          )
+                        ],
                       )
                     ],
                   ))
