@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:stripe_payment/stripe_payment.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/row_list_pay.dart';
 
-class CheckoutModal extends StatelessWidget {
+class CheckoutModal extends StatefulWidget {
+  @override
+  _CheckoutModalState createState() => _CheckoutModalState();
+}
+
+class _CheckoutModalState extends State<CheckoutModal> {
+  PaymentMethod _paymentMethod;
+  PaymentIntentResult _paymentIntent;
+
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -12,7 +21,7 @@ class CheckoutModal extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Pagar",
+                "Confirmar pago",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
               Expanded(
@@ -32,20 +41,22 @@ class CheckoutModal extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RowListElement(
-                nameListItem: 'Entrega',
-                iconVisible: true,
-                widgetListSelect: Text(
-                  "Seleccion metodo",
+              InkWell(
+                onTap: () {
+                  StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest()).then((PaymentMethod paymentMethod) {
+                    setState(() {
+                      _paymentMethod = paymentMethod;
+                    });
+                    print('Received ${paymentMethod.id}');
+                  }).catchError((e) {
+                    print('error ${e.toString()}');
+                  });
+                },
+                child: RowListElement(
+                  nameListItem: 'Forma de Pago',
+                  iconVisible: true,
+                  widgetListSelect: Image.asset('assets/icons/ic_pay_card.png'),
                 ),
-              ),
-              Divider(
-                thickness: 2,
-              ),
-              RowListElement(
-                nameListItem: 'Forma de Pago',
-                iconVisible: true,
-                widgetListSelect: Image.asset('assets/icons/ic_pay_card.png'),
               ),
               Divider(
                 thickness: 2,
@@ -100,7 +111,23 @@ class CheckoutModal extends StatelessWidget {
               ),
               PrimaryButton(
                 buttonText: 'Realizar pedido',
-                onPressed: () {},
+                onPressed: _paymentMethod == null
+                    ? null
+                    : () {
+                        StripePayment.confirmPaymentIntent(
+                          PaymentIntent(
+                            paymentMethodId: _paymentMethod.id,
+                            clientSecret: "test",
+                          ),
+                        ).then((paymentIntent) {
+                          print('Received ${paymentIntent.paymentIntentId}');
+                          setState(() {
+                            _paymentIntent = paymentIntent;
+                          });
+                        }).catchError((e) {
+                          print('error ${e.toString()}');
+                        });
+                      },
               ),
             ],
           ),
