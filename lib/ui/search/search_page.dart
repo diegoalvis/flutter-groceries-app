@@ -19,9 +19,13 @@ class SearchPage extends StatelessWidget {
   final _cubit = SearchCubit(GetIt.I.get<Repository>());
 
   final colors = [
-    Colors.green,
-    Colors.pink,
-    Colors.teal,
+    Color(0xffE1FFFE),
+    Color(0xffFFEAFF),
+    Color(0xFFFFDDC9),
+    Color(0xFFFFFAE5),
+    Color(0xffEBFFE0),
+    Color(0xffECF3FF),
+    Color(0xffFFFFDC),
   ];
 
   @override
