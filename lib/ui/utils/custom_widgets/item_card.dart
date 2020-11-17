@@ -31,7 +31,7 @@ class ItemCard extends StatelessWidget {
       child: Stack(
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 child: basicInfo.image?.url != null ? Image.network(ApiClient.BASE_URL + basicInfo.image.url) : Icon(Icons.image_not_supported_outlined),
