@@ -14,7 +14,7 @@ class CartModel extends ChangeNotifier {
 
   int get deliveryFee => _vendor?.deliveryFee?.toInt() ?? 0;
 
-  int get total => itemsPrice + deliveryFee;
+  int get orderTotal => itemsPrice + deliveryFee;
 
   void increase(VendorProduct item, {Vendor vendor}) {
     validateCurrentVendor(vendor);

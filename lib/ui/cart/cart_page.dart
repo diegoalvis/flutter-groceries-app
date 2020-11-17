@@ -26,7 +26,7 @@ class CartPage extends StatelessWidget {
           child: cart.items.entries.isEmpty
               ? Center(child: Text('Aun no has agregado\nproductos en tu carrito'))
               : Column(children: [
-                  Text('Resumen de la compra'),
+                  Text('Tu carrito'),
                   Expanded(
                     child: ListView(
                       children: cart.items.entries.map((e) {
@@ -48,46 +48,35 @@ class CartPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('Orden'),
-                        Text('\$${cart.itemsPrice}'),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 12.0, left: 24.0, right: 24.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('Domicilio'),
-                        Text('\$${cart.deliveryFee}'),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('Total', style: TextStyle(fontWeight: FontWeight.bold)),
-                        Text('\$${cart.total}'),
-                      ],
-                    ),
-                  ),
-                  Padding(
                       padding: EdgeInsets.all(16),
                       child: PrimaryButton(
-                        buttonText: "Continuar con el pago",
+                        buttonText: "Continuar",
                         buttonColor: Theme.of(context).primaryColor,
                         onPressed: () {
                           showModalBottomSheet(
                             isScrollControlled: true,
                             context: context,
                             builder: (ctx) {
-                              return CheckoutModal();
+                              return CheckoutModal(onCheckoutError: () {
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (BuildContext dialogContext) {
+                                    return AlertDialog(
+                                      title: Text('Lo sentimos'),
+                                      content: Text('No se pudo completar la compra'),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text('aceptar'),
+                                          onPressed: () {
+                                            Navigator.of(dialogContext).pop(); // Dismiss alert dialog
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              });
                             },
                           );
                         },

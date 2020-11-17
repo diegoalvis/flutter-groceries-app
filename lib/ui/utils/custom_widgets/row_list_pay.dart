@@ -22,19 +22,10 @@ class RowListElement extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        Expanded(
-          child: Container(
-            width: double.infinity,
-          ),
-        ),
+        Spacer(),
         widgetListSelect,
-        SizedBox(
-          width: 10,
-        ),
-        Opacity(
-          child: Icon(Icons.arrow_forward_ios),
-          opacity: iconVisible ? 1.0 : 0.0,
-        ),
+        SizedBox(width: 4),
+        iconVisible ? Icon(Icons.arrow_forward_ios) : SizedBox(),
       ],
     );
   }
