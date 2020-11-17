@@ -18,6 +18,12 @@ class SearchPage extends StatelessWidget {
 
   final _cubit = SearchCubit(GetIt.I.get<Repository>());
 
+  final colors = [
+    Colors.green,
+    Colors.pink,
+    Colors.teal,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +45,7 @@ class SearchPage extends StatelessWidget {
                   itemCount: data.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                   itemBuilder: (context, index) {
-                    return CategoryCard(category: data[index]);
+                    return CategoryCard(backgroundColor: colors[index % colors.length], category: data[index]);
                   },
                 );
               }

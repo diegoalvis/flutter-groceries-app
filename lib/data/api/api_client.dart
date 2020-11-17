@@ -17,7 +17,7 @@ class ApiClient {
   ApiClient(this._dio); // Local
 
   Future<List<Vendor>> getVendors(String cityCode) async {
-    Response response = await _dio.get(BASE_URL + "/vendors");
+    Response response = await _dio.get(BASE_URL + "/vendors?_where[location.city_code]=BOG");
     print(response);
     final json = response.data as List;
     return json.map((e) => Vendor.fromJson(e)).toList();

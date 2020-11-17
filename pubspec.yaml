@@ -37,13 +37,8 @@ dependencies:
   provider: ^4.3.2+2
   flutter_credit_card: ^0.1.3
   awesome_card: ^1.1.0
-  stripe_payment: ^1.0.8
-
-
-
-
   country_icons: ^1.1.1
-
+  mercado_pago_integration: ^1.1.7
 
 
 dev_dependencies:

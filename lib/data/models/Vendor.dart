@@ -13,6 +13,7 @@ class Vendor {
   final int id;
   final String name;
   final String description;
+  @JsonKey(nullable: true)
   final double deliveryFee;
   @JsonKey(nullable: true)
   final ServerImage logo;

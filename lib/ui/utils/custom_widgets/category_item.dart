@@ -5,7 +5,9 @@ import 'package:winkels_customer/data/models/VendorCategory.dart';
 class CategoryCard extends StatelessWidget {
   final VendorCategory category;
 
-  const CategoryCard({Key key, @required this.category}) : super(key: key);
+  final Color backgroundColor;
+
+  const CategoryCard({Key key, @required this.category, this.backgroundColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +17,14 @@ class CategoryCard extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.purpleAccent),
-          color: Colors.blue,
+          color: backgroundColor,
           borderRadius: BorderRadius.all(
             Radius.circular(20.0),
           ),
         ),
         child: Column(
           children: [
-            category?.image?.url == null ? SizedBox():  Image.network(ApiClient.BASE_URL + category.image.url),
+            category?.image?.url == null ? SizedBox() : Image.network(ApiClient.BASE_URL + category.image.url),
             Text(category.descriptionCategory),
           ],
         ),

@@ -1,9 +1,6 @@
-import 'package:stripe_payment/stripe_payment.dart';
+class PaymentHelper {
+  static const PUBLIC_KEY = 'TEST-24538b87-1f2d-44b4-8c2c-39984f5a6c68';
+  static const ACCESS_TOKEN = 'TEST-2324441450281358-111718-310bbdea3cd8ddc54c8125e606ddfe8b-209386453';
 
-class StripeHelper {
-  static const STRIPE_PUBLIC_KEY = 'pk_test_51HoQwQDtNGIrtED3uHzVS0BvUzJQxu9bupbvFUh8lzLCu3zLbosPN5IuywHqgF8QKha2jrNAwU0WD6gmv20sas6M00Fi74EEOA';
 
-  static void init() {
-    StripePayment.setOptions(StripeOptions(publishableKey: STRIPE_PUBLIC_KEY, merchantId: "Test", androidPayMode: 'test'));
-  }
 }

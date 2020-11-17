@@ -25,7 +25,7 @@ Vendor _$VendorFromJson(Map<String, dynamic> json) {
             ? null
             : VendorCategory.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    (json['delivery_fee'] as num).toDouble(),
+    (json['delivery_fee'] as num)?.toDouble(),
   );
 }
 

@@ -12,6 +12,7 @@ class Preferences {
   static const ADDRESS = 'address';
   static const USER_LOGGED_IN = "user_logged_in";
   static const AUTH_TOKEN = "auth_token";
+  static const USER_PHONE = "user_phone";
 
   Future<Preferences> init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -76,6 +77,19 @@ class Preferences {
     final addressJson = _preferences.getString(ADDRESS);
     try {
       return Address.fromJson(json.decode(addressJson));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> saveUserPhone(String phoneNumber) async {
+    await setUserLoggedIn(false);
+    return _preferences.setString(USER_PHONE, phoneNumber);
+  }
+
+  String getUserPhone() {
+    try {
+      return _preferences.getString(USER_PHONE);
     } catch (e) {
       return null;
     }

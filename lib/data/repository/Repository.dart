@@ -37,12 +37,17 @@ class Repository {
 
       final result = await _auth.signInWithCredential(credential);
       if (result.user != null) {
+        _preferences.saveUserPhone(phoneNumber);
         return registerUser(phoneNumber);
       }
       return false;
     } catch (e) {
       return false;
     }
+  }
+
+  String getUserPhone() {
+    return _preferences.getUserPhone();
   }
 
   Future<bool> registerUser(String phoneNumber) async {
@@ -91,6 +96,4 @@ class Repository {
   Address getSavedAddress() {
     return _preferences.getAddress();
   }
-
-
 }

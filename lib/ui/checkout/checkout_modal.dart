@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:stripe_payment/stripe_payment.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/row_list_pay.dart';
 
@@ -9,8 +8,9 @@ class CheckoutModal extends StatefulWidget {
 }
 
 class _CheckoutModalState extends State<CheckoutModal> {
-  PaymentMethod _paymentMethod;
-  PaymentIntentResult _paymentIntent;
+
+  // final _stripePayment = GetIt.I.get<FlutterStripePayment>();
+  String  _paymentMethodId;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +42,27 @@ class _CheckoutModalState extends State<CheckoutModal> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               InkWell(
-                onTap: () {
-                  StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest()).then((PaymentMethod paymentMethod) {
-                    setState(() {
-                      _paymentMethod = paymentMethod;
-                    });
-                    print('Received ${paymentMethod.id}');
-                  }).catchError((e) {
-                    print('error ${e.toString()}');
-                  });
+                onTap: () async {
+                  // var paymentResponse = await _stripePayment.addPaymentMethod();
+                  // setState(() {
+                  //   if (paymentResponse.status ==
+                  //       PaymentResponseStatus.succeeded) {
+                  //     _paymentMethodId = paymentResponse.paymentMethodId;
+                  //   } else {
+                  //     print(paymentResponse.errorMessage);
+                  //   }
+                  // });
+
+
+                  // StripePayment.paymentRequestWithCardForm(CardFormPaymentRequest()).then((PaymentMethod paymentMethod) {
+                  //   setState(() {
+                  //     _paymentMethod = paymentMethod;
+                  //     StripePayment.authenticatePaymentIntent(clientSecret: null)
+                  //   });
+                  //   print('Received ${paymentMethod.id}');
+                  // }).catchError((e) {
+                  //   print('error ${e.toString()}');
+                  // });
                 },
                 child: RowListElement(
                   nameListItem: 'Forma de Pago',
@@ -111,22 +123,24 @@ class _CheckoutModalState extends State<CheckoutModal> {
               ),
               PrimaryButton(
                 buttonText: 'Realizar pedido',
-                onPressed: _paymentMethod == null
+                onPressed: _paymentMethodId == null
                     ? null
                     : () {
-                        StripePayment.confirmPaymentIntent(
-                          PaymentIntent(
-                            paymentMethodId: _paymentMethod.id,
-                            clientSecret: "test",
-                          ),
-                        ).then((paymentIntent) {
-                          print('Received ${paymentIntent.paymentIntentId}');
-                          setState(() {
-                            _paymentIntent = paymentIntent;
-                          });
-                        }).catchError((e) {
-                          print('error ${e.toString()}');
-                        });
+
+
+                        // StripePayment.confirmPaymentIntent(
+                        //   PaymentIntent(
+                        //     paymentMethodId: _paymentMethod.id,
+                        //     clientSecret: "test",
+                        //   ),
+                        // ).then((paymentIntent) {
+                        //   print('Received ${paymentIntent.paymentIntentId}');
+                        //   setState(() {
+                        //     _paymentIntent = paymentIntent;
+                        //   });
+                        // }).catchError((e) {
+                        //   print('error ${e.toString()}');
+                        // });
                       },
               ),
             ],
