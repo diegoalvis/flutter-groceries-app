@@ -8,7 +8,7 @@ class SelectAddressCubit extends BaseCubit {
   SelectAddressCubit(Repository repository) : super(repository);
 
   //TODo esto deberia traerlo desde el servidor
-  List<City> mockACityList = ['Bogota', 'Medellin', 'Cali'].map((e) => City(e, e.substring(0, 2).toUpperCase(), 'COL')).toList();
+  List<City> mockACityList = ['Bogota', 'Medellin', 'Cali'].map((e) => City(e, e.substring(0, 3).toUpperCase(), 'COL')).toList();
 
   Future<void> saveAddress(String address, City city) async {
     emit(BaseState(StateType.loading));
