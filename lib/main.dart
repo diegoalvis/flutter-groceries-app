@@ -61,7 +61,6 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
-                '/add_new_card_page': (BuildContext context) => AddNewCardPage(),
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;
