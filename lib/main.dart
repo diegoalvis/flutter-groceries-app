@@ -15,7 +15,6 @@ import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/cart/cart_model.dart';
 import 'ui/register/phone_number_page.dart';
-import 'ui/screens/add_new_card_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
 Future<void> main() async {
