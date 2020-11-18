@@ -26,7 +26,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('Mis ordenes')),
       body: RefreshIndicator(
         onRefresh: _cubit.getOrders,
         child: BlocBuilder<OrderHistoryCubit, BaseState>(
@@ -43,7 +43,7 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
               if (state.type == StateType.success) {
                 final data = state.data as List<Order>;
                 return ListView.builder(
-                  itemCount: data.length,
+                  itemCount: data.length ,
                   itemBuilder: (context, index) {
                     return OrderItemCard(order: data[index]);
                   },

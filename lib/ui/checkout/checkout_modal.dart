@@ -109,12 +109,11 @@ class CheckoutModal extends StatelessWidget {
                     onCheckoutInProgress();
                   }
                   if (state.type == StateType.error) {
-                    // onCheckoutError();
-                    // TODO cambiar este por el arriba
-                    onCheckoutSuccess();
+                    onCheckoutError();
                   }
                   if (state.type == StateType.success) {
                     Navigator.pop(context);
+                    cart.reset();
                     onCheckoutSuccess();
                   }
                 },
@@ -122,7 +121,15 @@ class CheckoutModal extends StatelessWidget {
                   buttonText: 'Seleccionar metodo de pago',
                   onPressed: () {
                     Navigator.pop(context);
-                    _cubit.startCheckout(cart.orderTotal, cart.items, cart.itemsPrice, cart.vendor);
+                    _cubit.startCheckout(cart.orderTotal, cart.items, cart.itemsPrice, cart.vendor, onResult: (state) {
+                      if (state == StateType.error) {
+                        onCheckoutError();
+                      }
+                      if (state == StateType.success) {
+                        cart.reset();
+                        onCheckoutSuccess();
+                      }
+                    });
                   },
                 ),
               ),

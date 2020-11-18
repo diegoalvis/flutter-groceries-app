@@ -5,7 +5,6 @@ import 'package:winkels_customer/data/models/Order.dart';
 import 'package:winkels_customer/data/models/OrderDTO.dart';
 import 'package:winkels_customer/data/models/Vendor.dart';
 import 'package:winkels_customer/data/models/VendorCategory.dart';
-import 'package:winkels_customer/data/models/BaseProduct.dart';
 import 'package:winkels_customer/data/models/VendorProduct.dart';
 import 'package:winkels_customer/data/preferences/preferences.dart';
 
@@ -58,8 +57,6 @@ class Repository {
       return res;
     }
     return null;
-
-
   }
 
   Future<bool> registerUser(String phoneNumber) async {
@@ -67,8 +64,8 @@ class Repository {
     if (result != null) {
       final token = result['jwt'].toString();
       final userId = result['user']['id'];
-      await  _preferences.saveAuthToken(token);
-      await  _preferences.saveUserId(userId);
+      await _preferences.saveAuthToken(token);
+      await _preferences.saveUserId(userId);
       return true;
     }
     return false;
@@ -127,7 +124,9 @@ class Repository {
   }
 
   Future<bool> updateOrder(OrderDTO order) async {
-    final result = await _apiClient.updateOrder(order);
+    final result = await _apiClient.updateOrder(order
+      ..usersPermissionsUser = _preferences.getUserId().toString()
+      ..orderStatus = ORDER_STATUS_STRING[OrderStatus.PAYMENT_CONFIRMED]);
     if (result != null) {
       return true;
     }
@@ -136,6 +135,9 @@ class Repository {
 
   Future<List<Order>> getMyOrders() async {
     final result = await _apiClient.getMyOrders(_preferences.getUserId());
-    return result;
+    if (result != null && result.isNotEmpty) {
+      return result;
+    }
+    throw Error();
   }
 }

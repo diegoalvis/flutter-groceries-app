@@ -25,7 +25,7 @@ class OrderItemCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    order.payment.paymentMethod ?? 'No reconcido',
+                    order.vendor?.name ?? '',
                     style: TextStyle(
                       fontSize: 20,
                     ),

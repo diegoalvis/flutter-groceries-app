@@ -18,6 +18,11 @@ class CartModel extends ChangeNotifier {
 
   Vendor get vendor => _vendor;
 
+  void reset() {
+    _vendor = null;
+    _items.clear();
+  }
+
   void increase(VendorProduct item, {Vendor vendor}) {
     validateCurrentVendor(vendor);
     _items[item] = min((_items[item] ?? 0) + 1, 99);

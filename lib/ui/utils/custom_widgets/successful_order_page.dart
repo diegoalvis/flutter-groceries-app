@@ -29,7 +29,7 @@ class SuccessfulOrderPage extends StatelessWidget {
             ),
             PrimaryButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/order_history');
+                  Navigator.pushReplacementNamed(context, '/order_history');
                 },
                 buttonText: 'Seguir Pedido'),
             SizedBox(
@@ -40,9 +40,7 @@ class SuccessfulOrderPage extends StatelessWidget {
                 debugPrint('222');
                 Navigator.pop(context);
               },
-              child: Text("Volver",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.green, fontSize: 20.0)),
+              child: Text("Volver", textAlign: TextAlign.center, style: TextStyle(color: Colors.green, fontSize: 20.0)),
             )
           ],
         ),

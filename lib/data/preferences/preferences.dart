@@ -62,17 +62,18 @@ class Preferences {
     }
   }
 
-  Future<bool> saveUserId(String userId) async {
-    return _preferences.setString(USER_ID, userId);
+  Future<bool> saveUserId(int userId) async {
+    return _preferences.setInt(USER_ID, userId);
   }
 
-  String getUserId() {
+  int getUserId() {
     try {
-      return _preferences.getString(USER_ID);
-    } catch (e) {
-      return null;
+      return _preferences.getInt(USER_ID);
+      } catch (e)
+      {
+        return null;
+      }
     }
-  }
 
   Future<bool> saveLastOrderId(int id) async {
     return _preferences.setInt(LAST_ORDER_ID, id);

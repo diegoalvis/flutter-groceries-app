@@ -8,6 +8,7 @@ part of 'OrderDTO.dart';
 
 OrderDTO _$OrderDTOFromJson(Map<String, dynamic> json) {
   return OrderDTO(
+    id: json['id'] as int,
     deliveryAddress: json['delivery_address'] as String,
     orderTotal: (json['order_total'] as num).toDouble(),
     deliveryFee: (json['delivery_fee'] as num).toDouble(),
@@ -18,7 +19,7 @@ OrderDTO _$OrderDTOFromJson(Map<String, dynamic> json) {
     products: (json['products'] as List)
         .map((e) => OrderProduct.fromJson(e as Map<String, dynamic>))
         .toList(),
-  )..id = json['id'] as String;
+  );
 }
 
 Map<String, dynamic> _$OrderDTOToJson(OrderDTO instance) => <String, dynamic>{

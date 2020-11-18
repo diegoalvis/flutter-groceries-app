@@ -8,22 +8,25 @@ part 'OrderDTO.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class OrderDTO {
-  String id;
+  int id;
   String deliveryAddress;
   double orderTotal;
   double deliveryFee;
   String orderStatus;
   String vendor;
+  String usersPermissionsUser;
   double itemsTotal;
   OrderPayment payment;
   List<OrderProduct> products;
 
   OrderDTO({
+    this.id,
     this.deliveryAddress,
     this.orderTotal,
     this.deliveryFee,
     this.orderStatus,
     this.vendor,
+    this.usersPermissionsUser,
     this.itemsTotal,
     this.payment,
     this.products,
@@ -33,8 +36,9 @@ class OrderDTO {
 
   Map<String, dynamic> toJson() => _$OrderDTOToJson(this);
 
-  static OrderDTO fromOrder(Order order) {
-    OrderDTO(
+  factory OrderDTO.fromOrder(Order order) {
+    return OrderDTO(
+      id: order.id,
       deliveryAddress: order.deliveryAddress,
       orderTotal: order.orderTotal,
       deliveryFee: order.deliveryFee,

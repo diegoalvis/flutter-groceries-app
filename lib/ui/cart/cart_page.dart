@@ -27,7 +27,7 @@ class _CartPageState extends State<CartPage> {
     var cart = context.watch<CartModel>();
 
     return Scaffold(
-      appBar: widget.destination == null ? SizedBox() : AppBar(),
+      appBar: widget.destination == null ? AppBar(title: Text('Tu carrito')) : null,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 8, right: 8, bottom: 8),
@@ -35,7 +35,6 @@ class _CartPageState extends State<CartPage> {
               ? Center(child: Text('Aun no has agregado\nproductos en tu carrito'))
               : Column(
                   children: [
-                    Text('Tu carrito'),
                     Expanded(
                       child: ListView(
                         children: cart.items.entries.map((e) {
@@ -77,10 +76,10 @@ class _CartPageState extends State<CartPage> {
                                           });
                                         },
                                         onCheckoutSuccess: () {
+                                          Navigator.pushNamedAndRemoveUntil(context, '/successful_order', (route) => route.settings.name == '/home');
                                           setState(() {
                                             _loading = false;
                                           });
-                                          Navigator.pushNamedAndRemoveUntil(context, '/successful_order', (route) => route.settings.name == '/home');
                                         },
                                         onCheckoutError: () {
                                           setState(() {

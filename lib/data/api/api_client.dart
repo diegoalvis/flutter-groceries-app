@@ -102,7 +102,7 @@ class ApiClient {
     return prefResponse['id'];
   }
 
-  Future<List<Order>> getMyOrders(String userId) async {
+  Future<List<Order>> getMyOrders(int userId) async {
     Response response = await _dio.get(BASE_URL + "/orders?_where[users_permissions_user]=$userId");
     print(response);
     final json = response.data as List;

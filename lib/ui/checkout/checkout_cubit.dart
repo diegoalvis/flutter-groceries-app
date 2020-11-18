@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mercado_pago_integration/core/failures.dart';
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
@@ -19,9 +20,8 @@ class CheckoutCubit extends BaseCubit {
 
   Preferences _preferences = GetIt.I.get();
 
-  Future<void> startCheckout(double totalPrice, Map<VendorProduct, int> items, double itemsPrice, Vendor vendor) async {
+  Future<void> startCheckout(double totalPrice, Map<VendorProduct, int> items, double itemsPrice, Vendor vendor, {ValueChanged<StateType> onResult}) async {
     emit(BaseState(StateType.loading));
-
     try {
       final order = await createOrder(totalPrice, vendor, itemsPrice, items);
       final userPhone = repository.getUserPhone();
@@ -50,10 +50,10 @@ class CheckoutCubit extends BaseCubit {
 
       checkoutReq.fold(
         (Failure failure) {
-          emit(BaseState(StateType.error, data: '${failure.message}'));
+          onResult(StateType.error);
         },
         (Payment payment) async {
-          updateOrderPayment(order, payment);
+          updateOrderPayment(order, payment, onResult);
         },
       );
     } catch (e) {
@@ -61,7 +61,7 @@ class CheckoutCubit extends BaseCubit {
     }
   }
 
-  Future<void> updateOrderPayment(Order order, Payment payment) async {
+  Future<void> updateOrderPayment(Order order, Payment payment, ValueChanged<StateType> onResult) async {
     try {
       order.payment = OrderPayment(
         paymentId: payment.paymentId,
@@ -72,10 +72,12 @@ class CheckoutCubit extends BaseCubit {
       );
 
       final res = await repository.updateOrder(OrderDTO.fromOrder(order));
+      onResult(StateType.success);
       emit(BaseState(StateType.success, data: payment));
     } catch (e) {
       // 4013 5406 8274 6260
       // 5254 1336 7440 3564
+      onResult(StateType.error);
       emit(BaseState(StateType.error));
     }
   }
