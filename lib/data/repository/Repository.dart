@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:winkels_customer/data/api/api_client.dart';
 import 'package:winkels_customer/data/models/Address.dart';
+import 'package:winkels_customer/data/models/Order.dart';
+import 'package:winkels_customer/data/models/OrderDTO.dart';
 import 'package:winkels_customer/data/models/Vendor.dart';
 import 'package:winkels_customer/data/models/VendorCategory.dart';
 import 'package:winkels_customer/data/models/BaseProduct.dart';
@@ -95,5 +97,26 @@ class Repository {
 
   Address getSavedAddress() {
     return _preferences.getAddress();
+  }
+
+  Future<bool> logout() {
+    return _preferences.clearSession();
+  }
+
+  Future<Order> createOrder(OrderDTO order) async {
+    final result = await _apiClient.createOrder(order);
+    if (result != null) {
+      await _preferences.saveLastOrderId(result.id);
+      return result;
+    }
+    return null;
+  }
+
+  Future<bool> updateOrder(OrderDTO order) async {
+    final result = await _apiClient.updateOrder(order);
+    if (result != null) {
+      return true;
+    }
+    return false;
   }
 }

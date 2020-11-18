@@ -13,6 +13,7 @@ class Preferences {
   static const USER_LOGGED_IN = "user_logged_in";
   static const AUTH_TOKEN = "auth_token";
   static const USER_PHONE = "user_phone";
+  static const LAST_ORDER_ID = "last_order_id";
 
   Future<Preferences> init() async {
     _preferences = await SharedPreferences.getInstance();
@@ -52,6 +53,10 @@ class Preferences {
     return _preferences.setString(AUTH_TOKEN, token);
   }
 
+  Future<bool> saveLastOrderId(String id) async {
+    return _preferences.setString(LAST_ORDER_ID, id);
+  }
+
   String getAuthToken() {
     try {
       return _preferences.getString(AUTH_TOKEN);
@@ -61,8 +66,7 @@ class Preferences {
   }
 
   Future<bool> clearSession() async {
-    await setUserLoggedIn(false);
-    return _preferences.setString(AUTH_TOKEN, null);
+    return _preferences.clear();
   }
 
   Future<bool> saveUserAddress(Address address) async {

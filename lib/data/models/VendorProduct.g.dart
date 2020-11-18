@@ -9,7 +9,7 @@ part of 'VendorProduct.dart';
 VendorProduct _$VendorProductFromJson(Map<String, dynamic> json) {
   return VendorProduct(
     json['id'] as int,
-    json['price'] as int,
+    (json['price'] as num).toDouble(),
     json['available'] as bool,
     json['product'] == null
         ? null

@@ -120,7 +120,7 @@ class CheckoutModal extends StatelessWidget {
                             : PrimaryButton(
                                 buttonText: 'Seleccionar metodo de pago',
                                 onPressed: () {
-                                  _cubit.startCheckout(cart.orderTotal);
+                                  _cubit.startCheckout(cart.orderTotal, cart.items, cart.itemsPrice,  cart.vendor);
                                 },
                               ),
                       );

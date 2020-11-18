@@ -64,6 +64,7 @@ class _VendorProductsPageState extends State<VendorProductsPage> {
                         itemBuilder: (context, index) {
                           return ItemCard(
                             product: data[index],
+                            vendor: vendor,
                           );
                         },
                       );

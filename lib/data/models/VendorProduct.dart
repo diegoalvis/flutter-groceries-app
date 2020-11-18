@@ -7,7 +7,7 @@ part 'VendorProduct.g.dart';
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class VendorProduct {
   final int id;
-  final int price;
+  final double price;
   final bool available;
   @JsonKey(nullable: true)
   final BaseProduct product;

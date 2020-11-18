@@ -6,6 +6,7 @@ import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/cart/cart_page.dart';
 import 'package:winkels_customer/ui/home/home_page.dart';
+import 'package:winkels_customer/ui/profile/profile_page.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/sing_in_page.dart';
 import 'package:winkels_customer/ui/vendor/details/vendor_products_page.dart';
@@ -15,12 +16,13 @@ import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/cart/cart_model.dart';
 import 'ui/register/phone_number_page.dart';
+import 'ui/screens/change_password.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized(); //all widgets are rendered here
   await AppModule.initialise();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   runApp(
     ChangeNotifierProvider(
@@ -55,6 +57,8 @@ class MyApp extends StatelessWidget {
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
                 '/select_location': (BuildContext context) => SelectAddressPage(),
                 '/sing_in': (BuildContext context) => SingInPage(),
+                '/profile': (BuildContext context) => ProfilePage(),
+                '/change_password': (BuildContext context) => ChangePassword(),
                 '/select_address': (BuildContext context) => SelectAddressPage(),
                 '/home': (BuildContext context) => HomePage(),
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),

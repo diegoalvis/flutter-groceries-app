@@ -10,11 +10,13 @@ class CartModel extends ChangeNotifier {
 
   Map<VendorProduct, int> get items => _items..removeWhere((key, value) => value == 0);
 
-  int get itemsPrice => _items.entries.map((e) => e.key.price * e.value).reduce((p1, p2) => p1 + p2);
+  double get itemsPrice => _items.entries.map((e) => e.key.price * e.value).reduce((p1, p2) => p1 + p2);
 
-  int get deliveryFee => _vendor?.deliveryFee?.toInt() ?? 0;
+  double get deliveryFee => _vendor?.deliveryFee ?? 0.0;
 
-  int get orderTotal => itemsPrice + deliveryFee;
+  double get orderTotal => itemsPrice + deliveryFee;
+
+  Vendor get vendor => _vendor;
 
   void increase(VendorProduct item, {Vendor vendor}) {
     validateCurrentVendor(vendor);

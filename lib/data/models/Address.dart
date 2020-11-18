@@ -20,4 +20,8 @@ class Address {
   factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressToJson(this);
+
+  String getFullAddress() {
+    return [address, additional, cityName, countryCode].where((element) => element != null && element.isNotEmpty).join(',');
+  }
 }

@@ -6,11 +6,12 @@ class ChangePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
           child: Padding(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -30,14 +31,13 @@ class ChangePassword extends StatelessWidget {
                       style: TextStyle(color: Colors.black45),
                     ),
                     TextField(
-                      textInputAction: TextInputAction.search,
+                      textInputAction: TextInputAction.done,
                       textCapitalization: TextCapitalization.words,
 
                       // controller: _addressController,
                     )
                   ],
                 ),
-
                 SizedBox(
                   height: 40,
                 ),
@@ -49,9 +49,8 @@ class ChangePassword extends StatelessWidget {
                       style: TextStyle(color: Colors.black45),
                     ),
                     TextField(
-                      textInputAction: TextInputAction.search,
+                      textInputAction: TextInputAction.done,
                       textCapitalization: TextCapitalization.words,
-
                       // controller: _addressController,
                     )
                   ],
@@ -67,24 +66,17 @@ class ChangePassword extends StatelessWidget {
                       style: TextStyle(color: Colors.black45),
                     ),
                     TextField(
-                      textInputAction: TextInputAction.search,
+                      textInputAction: TextInputAction.done,
                       textCapitalization: TextCapitalization.words,
-
-                      // controller: _addressController,
                     )
                   ],
                 ),
-                Expanded(
-                    child: Container(
-                      height: double.infinity,
-                    )),
+                Spacer(),
                 PrimaryButton(
                   buttonText: 'Guardar Cambios',
                   onPressed: () {},
                 ),
-                SizedBox(
-                  height: 20,
-                )
+                Spacer(),
               ],
             ),
           ),

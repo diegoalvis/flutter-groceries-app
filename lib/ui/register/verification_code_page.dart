@@ -126,8 +126,6 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
                                 icon: Icon(Icons.arrow_forward_ios),
                                 color: Colors.white,
                                 onPressed: () {
-                                  Navigator.pushNamed(context, '/select_address');
-
                                   _cubit.validatePhoneNumber(widget._phoneNumber, _pinController.text);
                                 },
                               ),

@@ -10,7 +10,7 @@ class ItemCard extends StatelessWidget {
   final VendorProduct product;
   final Vendor vendor;
 
-  const ItemCard({Key key, this.product, this.vendor}) : super(key: key);
+  const ItemCard({Key key, this.product, @required this.vendor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

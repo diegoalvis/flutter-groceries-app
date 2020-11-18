@@ -121,7 +121,7 @@ class _SelectAddressPageState extends State<SelectAddressPage> {
                         style: TextStyle(color: Colors.black45),
                       ),
                       TextField(
-                        textInputAction: TextInputAction.search,
+                        textInputAction: TextInputAction.done,
                         maxLength: 60,
                         textCapitalization: TextCapitalization.words,
                         controller: _addressController,

@@ -1,18 +1,29 @@
+import 'package:get_it/get_it.dart';
 import 'package:mercado_pago_integration/core/failures.dart';
 import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 import 'package:mercado_pago_integration/models/payment.dart';
-import 'package:uuid/uuid.dart';
 import 'package:winkels_customer/core/cubit/base_cubit.dart';
 import 'package:winkels_customer/core/cubit/base_state.dart';
 import 'package:winkels_customer/core/stripe/stripe_helper.dart';
+import 'package:winkels_customer/data/models/Order.dart';
+import 'package:winkels_customer/data/models/OrderDTO.dart';
+import 'package:winkels_customer/data/models/OrderProduct.dart';
+import 'package:winkels_customer/data/models/Payment.dart';
+import 'package:winkels_customer/data/models/Vendor.dart';
+import 'package:winkels_customer/data/models/VendorProduct.dart';
+import 'package:winkels_customer/data/preferences/preferences.dart';
 import 'package:winkels_customer/data/repository/Repository.dart';
 
 class CheckoutCubit extends BaseCubit {
   CheckoutCubit(Repository repository) : super(repository);
 
-  Future<void> startCheckout(int totalPrice) async {
+  Preferences _preferences = GetIt.I.get();
+
+  Future<void> startCheckout(double totalPrice, Map<VendorProduct, int> items, double itemsPrice, Vendor vendor) async {
     emit(BaseState(StateType.loading));
+
     try {
+      final order = await createOrder(totalPrice, vendor, itemsPrice, items);
       final userPhone = repository.getUserPhone();
       final Map<String, Object> preferenceMap = {
         'items': [
@@ -20,9 +31,9 @@ class CheckoutCubit extends BaseCubit {
             'title': 'Test Order',
             'description': 'Description',
             'quantity': 1,
-            'order_id': '',
+            'order_id': order.id.toString(),
+            'unit_price': totalPrice.toInt(),
             'currency_id': 'COP',
-            'unit_price': totalPrice,
           }
         ],
         "payer": {
@@ -41,12 +52,50 @@ class CheckoutCubit extends BaseCubit {
         (Failure failure) {
           emit(BaseState(StateType.error, data: '${failure.message}'));
         },
-        (Payment payment) {
-          emit(BaseState(StateType.success, data: payment));
+        (Payment payment) async {
+          updateOrderPayment(order, payment);
         },
       );
     } catch (e) {
       emit(BaseState(StateType.error));
     }
+  }
+
+  Future<void> updateOrderPayment(Order order, Payment payment) async {
+    try {
+      order.payment = OrderPayment(
+        paymentId: payment.paymentId,
+        paymentType: payment.paymentTypeId,
+        paymentMethod: payment.paymentMethodId,
+        status: payment.status,
+        totalAmount: payment.transactionAmount,
+        couponAmount: payment.couponAmount,
+      );
+
+      final res = await repository.updateOrder(OrderDTO.fromOrder(order));
+      emit(BaseState(StateType.success, data: payment));
+    } catch (e) {
+      emit(BaseState(StateType.error));
+    }
+  }
+
+  Future<Order> createOrder(double totalPrice, Vendor vendor, double itemsPrice, Map<VendorProduct, int> items) async {
+    return repository.createOrder(
+      OrderDTO(
+        deliveryAddress: _preferences.getAddress().getFullAddress(),
+        orderTotal: totalPrice,
+        deliveryFee: vendor.deliveryFee,
+        vendor: vendor.id.toString(),
+        itemsTotal: itemsPrice,
+        products: items.entries.map((e) {
+          return OrderProduct(
+            name: e.key.product.name,
+            description: e.key.product.description,
+            unitPrice: e.key.price,
+            quantity: e.value,
+          );
+        }).toList(),
+      ),
+    );
   }
 }

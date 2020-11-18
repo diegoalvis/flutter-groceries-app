@@ -1,15 +1,17 @@
 import 'dart:convert' show utf8, base64;
 
 import 'package:dio/dio.dart';
+import 'package:winkels_customer/data/models/Order.dart';
+import 'package:winkels_customer/data/models/OrderDTO.dart';
 import 'package:winkels_customer/data/models/Vendor.dart';
 import 'package:winkels_customer/data/models/VendorCategory.dart';
 import 'package:winkels_customer/data/models/BaseProduct.dart';
 import 'package:winkels_customer/data/models/VendorProduct.dart';
 
 class ApiClient {
-  // static const String BASE_URL = "http://10.0.2.2:1337";
+  static const String BASE_URL = "http://10.0.2.2:1337";
   // Testing Heroku
-  static const String BASE_URL = "https://winkels-strapi.herokuapp.com";
+  // static const String BASE_URL = "https://winkels-strapi.herokuapp.com";
   // Prod
   // static const String BASE_URL = "https://winkels-strapi.herokuapp.com";
   final Dio _dio;
@@ -71,5 +73,17 @@ class ApiClient {
       return response.data['jwt'].toString();
     }
     return null;
+  }
+
+  Future<Order> createOrder(OrderDTO order) async {
+    Response response = await _dio.post(BASE_URL + "/orders", data: order.toJson());
+    print(response);
+    return Order.fromJson(response.data);
+  }
+
+  Future<Order> updateOrder(OrderDTO order) async {
+    Response response = await _dio.put(BASE_URL + "/orders/${order.id}", data: order.toJson());
+    print(response);
+    return Order.fromJson(response.data);
   }
 }
