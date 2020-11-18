@@ -15,6 +15,7 @@ import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/cart/cart_model.dart';
 import 'ui/register/phone_number_page.dart';
+import 'ui/screens/test_widget_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
 Future<void> main() async {
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
               title: 'Winkels',
               darkTheme: darkTheme,
               theme: lightTheme,
-              initialRoute: '/',
+              initialRoute: '/test_widget_page',
               routes: {
                 '/': (BuildContext context) => WelcomePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
+                '/test_widget_page': (BuildContext context) => TestWidgetPage(),
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;
