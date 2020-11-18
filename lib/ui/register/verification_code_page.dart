@@ -37,12 +37,9 @@ class _VerificationCodePageState extends State<VerificationCodePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(),
-
       body: SingleChildScrollView(
         child: ConstrainedBox(
-          // constraints: BoxConstraints(maxHeight: newheight),
           constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height - (MediaQuery.of(context).padding.top + kToolbarHeight)
           ),
 
