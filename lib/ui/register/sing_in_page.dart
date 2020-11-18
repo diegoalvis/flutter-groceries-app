@@ -29,6 +29,7 @@ class SingInPage extends StatelessWidget {
                         style: TextStyle(fontSize: 22),
                       ),
                     ),
+                    SizedBox(height: 20,),
                     IconPrimaryButton(
                       buttonText: 'Ingreso con correo',
                       buttonColor: Color(0xffC5C9D0),
