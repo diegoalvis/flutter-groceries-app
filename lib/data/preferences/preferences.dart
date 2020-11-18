@@ -12,6 +12,7 @@ class Preferences {
   static const ADDRESS = 'address';
   static const USER_LOGGED_IN = "user_logged_in";
   static const AUTH_TOKEN = "auth_token";
+  static const USER_ID = "user_id";
   static const USER_PHONE = "user_phone";
   static const LAST_ORDER_ID = "last_order_id";
 
@@ -53,6 +54,26 @@ class Preferences {
     return _preferences.setString(AUTH_TOKEN, token);
   }
 
+  String getAuthToken() {
+    try {
+      return _preferences.getString(AUTH_TOKEN);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<bool> saveUserId(String userId) async {
+    return _preferences.setString(USER_ID, userId);
+  }
+
+  String getUserId() {
+    try {
+      return _preferences.getString(USER_ID);
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<bool> saveLastOrderId(int id) async {
     return _preferences.setInt(LAST_ORDER_ID, id);
   }
@@ -60,14 +81,6 @@ class Preferences {
   int getLastOrderId() {
     try {
       return _preferences.getInt(LAST_ORDER_ID);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  String getAuthToken() {
-    try {
-      return _preferences.getString(AUTH_TOKEN);
     } catch (e) {
       return null;
     }

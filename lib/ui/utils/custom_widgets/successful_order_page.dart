@@ -27,16 +27,20 @@ class SuccessfulOrderPage extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            PrimaryButton(buttonText: 'Seguir Pedido'),
+            PrimaryButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/order_history');
+                },
+                buttonText: 'Seguir Pedido'),
             SizedBox(
               height: 20,
             ),
             GestureDetector(
               onTap: () {
                 debugPrint('222');
-                Navigator.pushNamed(context, '/home');
+                Navigator.pop(context);
               },
-              child: Text("Regresar al inicio",
+              child: Text("Volver",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.green, fontSize: 20.0)),
             )

@@ -68,14 +68,12 @@ class CheckoutCubit extends BaseCubit {
         paymentType: payment.paymentTypeId,
         paymentMethod: payment.paymentMethodId,
         status: payment.status,
-        totalAmount: payment.transactionAmount,
-        couponAmount: payment.couponAmount,
+        totalAmount: payment.transactionAmount.toString(),
       );
 
       final res = await repository.updateOrder(OrderDTO.fromOrder(order));
       emit(BaseState(StateType.success, data: payment));
     } catch (e) {
-      // 4013 5406 8274 6260
       // 4013 5406 8274 6260
       // 5254 1336 7440 3564
       emit(BaseState(StateType.error));

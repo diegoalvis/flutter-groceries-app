@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
+import 'package:winkels_customer/ui/utils/custom_widgets/row_list_pay.dart';
 
-import 'checkout_page.dart';
 
 class PaymentMethods extends StatelessWidget {
   @override
@@ -38,7 +38,7 @@ class PaymentMethods extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      RowListPay(
+                      RowListElement(
                         nameListItem: 'Entrega',
                         iconVisible: true,
                         widgetListSelect: Text(
@@ -48,7 +48,7 @@ class PaymentMethods extends StatelessWidget {
                       Divider(
                         thickness: 2,
                       ),
-                      RowListPay(
+                      RowListElement(
                         nameListItem: 'Forma de Pago',
                         iconVisible: true,
                         widgetListSelect: Image.asset('assets/icons/ic_pay_card.png'),
@@ -56,7 +56,7 @@ class PaymentMethods extends StatelessWidget {
                       Divider(
                         thickness: 2,
                       ),
-                      RowListPay(
+                      RowListElement(
                         nameListItem: 'Codigo promocional',
                         iconVisible: true,
                         widgetListSelect: Text('Agregar descuento'),
@@ -64,21 +64,21 @@ class PaymentMethods extends StatelessWidget {
                       Divider(
                         thickness: 2,
                       ),
-                      RowListPay(
+                      RowListElement(
                         nameListItem: 'Costo productos',
                         widgetListSelect: Text('\$130000'),
                       ),
                       Divider(
                         thickness: 2,
                       ),
-                      RowListPay(
+                      RowListElement(
                         nameListItem: 'Costo Envio',
                         widgetListSelect: Text('\$1000'),
                       ),
                       Divider(
                         thickness: 2,
                       ),
-                      RowListPay(
+                      RowListElement(
                         nameListItem: 'Costo total',
                         widgetListSelect: Text('\$59000'),
                       ),

@@ -9,10 +9,9 @@ class OrderPayment {
   String paymentType;
   String paymentMethod;
   String status;
-  double totalAmount;
-  double couponAmount;
+  String totalAmount;
 
-  OrderPayment({this.paymentId, this.paymentType, this.paymentMethod, this.status, this.totalAmount, this.couponAmount});
+  OrderPayment({this.paymentId, this.paymentType, this.paymentMethod, this.status, this.totalAmount});
 
   factory OrderPayment.fromJson(Map<String, dynamic> json) => _$OrderPaymentFromJson(json);
 

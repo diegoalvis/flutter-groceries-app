@@ -6,6 +6,7 @@ import 'package:winkels_customer/core/app_colors.dart';
 import 'package:winkels_customer/ui/address/select_address_page.dart';
 import 'package:winkels_customer/ui/cart/cart_page.dart';
 import 'package:winkels_customer/ui/home/home_page.dart';
+import 'package:winkels_customer/ui/order_history/order_history_page.dart';
 import 'package:winkels_customer/ui/profile/profile_page.dart';
 import 'package:winkels_customer/ui/register/phone_number_page.dart';
 import 'package:winkels_customer/ui/register/sing_in_page.dart';
@@ -15,8 +16,8 @@ import 'package:winkels_customer/ui/welcome/welcome_page.dart';
 import 'core/di/app_module.dart';
 import 'ui/account/account_page.dart';
 import 'ui/cart/cart_model.dart';
+import 'ui/profile/change_password.dart';
 import 'ui/register/phone_number_page.dart';
-import 'ui/screens/change_password.dart';
 import 'ui/screens/test_widget_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
                 '/test_widget_page': (BuildContext context) => TestWidgetPage(), //page test widgets
+                '/order_history': (BuildContext context) => OrderHistoryPage(),
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;

@@ -9,9 +9,9 @@ import 'package:winkels_customer/ui/utils/custom_widgets/primary_button.dart';
 import 'package:winkels_customer/ui/utils/custom_widgets/row_list_pay.dart';
 
 class CheckoutModal extends StatelessWidget {
-  final Function onCheckoutError;
+  final Function onCheckoutError, onCheckoutSuccess, onCheckoutInProgress;
 
-  CheckoutModal({Key key, @required this.onCheckoutError}) : super(key: key);
+  CheckoutModal({Key key, @required this.onCheckoutError, this.onCheckoutSuccess, this.onCheckoutInProgress}) : super(key: key);
 
   final _cubit = CheckoutCubit(GetIt.I.get());
 
@@ -105,26 +105,26 @@ class CheckoutModal extends StatelessWidget {
               BlocListener(
                 cubit: _cubit,
                 listener: (BuildContext context, state) {
+                  if (state.type == StateType.loading) {
+                    onCheckoutInProgress();
+                  }
                   if (state.type == StateType.error) {
+                    // onCheckoutError();
+                    // TODO cambiar este por el arriba
+                    onCheckoutSuccess();
+                  }
+                  if (state.type == StateType.success) {
                     Navigator.pop(context);
-                    onCheckoutError();
+                    onCheckoutSuccess();
                   }
                 },
-                child: BlocBuilder<CheckoutCubit, BaseState>(
-                    cubit: _cubit,
-                    builder: (context, state) {
-                      return AnimatedContainer(
-                        duration: Duration(milliseconds: 200),
-                        child: state.type == StateType.loading
-                            ? Center(child: CircularProgressIndicator())
-                            : PrimaryButton(
-                                buttonText: 'Seleccionar metodo de pago',
-                                onPressed: () {
-                                  _cubit.startCheckout(cart.orderTotal, cart.items, cart.itemsPrice,  cart.vendor);
-                                },
-                              ),
-                      );
-                    }),
+                child: PrimaryButton(
+                  buttonText: 'Seleccionar metodo de pago',
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _cubit.startCheckout(cart.orderTotal, cart.items, cart.itemsPrice, cart.vendor);
+                  },
+                ),
               ),
             ],
           ),

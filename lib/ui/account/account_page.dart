@@ -95,6 +95,9 @@ class AccountPage extends StatelessWidget {
                       color: Colors.white,
                       margin: EdgeInsets.only(bottom: 1),
                       child: ListTile(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/order_history');
+                        },
                         leading: Icon(
                           Icons.equalizer_rounded,
                           size: 45,

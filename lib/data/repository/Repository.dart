@@ -52,10 +52,24 @@ class Repository {
     return _preferences.getUserPhone();
   }
 
+  Future<String> createMercadoPagoPreference(Map<String, Object> preference) async {
+    final res = await _apiClient.createMercadoPagoPreference(preference);
+    if (res != null && res.isNotEmpty) {
+      return res;
+    }
+    return null;
+
+
+  }
+
   Future<bool> registerUser(String phoneNumber) async {
-    final token = await _apiClient.registerUser(phoneNumber);
-    if (token != null && token.isNotEmpty) {
-      return _preferences.saveAuthToken(token);
+    final result = await _apiClient.registerUser(phoneNumber);
+    if (result != null) {
+      final token = result['jwt'].toString();
+      final userId = result['user']['id'];
+      await  _preferences.saveAuthToken(token);
+      await  _preferences.saveUserId(userId);
+      return true;
     }
     return false;
   }
@@ -118,5 +132,10 @@ class Repository {
       return true;
     }
     return false;
+  }
+
+  Future<List<Order>> getMyOrders() async {
+    final result = await _apiClient.getMyOrders(_preferences.getUserId());
+    return result;
   }
 }
