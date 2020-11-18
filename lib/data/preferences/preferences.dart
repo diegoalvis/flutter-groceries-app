@@ -53,8 +53,16 @@ class Preferences {
     return _preferences.setString(AUTH_TOKEN, token);
   }
 
-  Future<bool> saveLastOrderId(String id) async {
-    return _preferences.setString(LAST_ORDER_ID, id);
+  Future<bool> saveLastOrderId(int id) async {
+    return _preferences.setInt(LAST_ORDER_ID, id);
+  }
+
+  int getLastOrderId() {
+    try {
+      return _preferences.getInt(LAST_ORDER_ID);
+    } catch (e) {
+      return null;
+    }
   }
 
   String getAuthToken() {

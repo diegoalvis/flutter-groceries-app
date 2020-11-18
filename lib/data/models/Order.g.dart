@@ -20,7 +20,7 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
     products: (json['products'] as List)
         .map((e) => OrderProduct.fromJson(e as Map<String, dynamic>))
         .toList(),
-  )..id = json['id'] as String;
+  )..id = json['id'] as int;
 }
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{

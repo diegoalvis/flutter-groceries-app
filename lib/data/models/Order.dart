@@ -8,7 +8,7 @@ part 'Order.g.dart';
 
 @JsonSerializable(nullable: false, fieldRename: FieldRename.snake)
 class Order {
-  String id;
+  int id;
   String deliveryAddress;
   double orderTotal;
   double deliveryFee;
@@ -34,3 +34,23 @@ class Order {
 
   Map<String, dynamic> toJson() => _$OrderToJson(this);
 }
+
+enum OrderStatus {
+  CREATED,
+  PAYMENT_CONFIRMED,
+  STARTED,
+  READY_FOR_PICKUP,
+  OUT_FOR_DELIVERY,
+  COMPLETED,
+  CANCELED,
+}
+
+const ORDER_STATUS_STRING = {
+  OrderStatus.CREATED: 'CREATED',
+  OrderStatus.PAYMENT_CONFIRMED: 'PAYMENT_CONFIRMED',
+  OrderStatus.STARTED: 'STARTED',
+  OrderStatus.READY_FOR_PICKUP: 'READY_FOR_PICKUP',
+  OrderStatus.OUT_FOR_DELIVERY: 'OUT_FOR_DELIVERY',
+  OrderStatus.COMPLETED: 'COMPLETED',
+  OrderStatus.CANCELED: 'CANCELED',
+};

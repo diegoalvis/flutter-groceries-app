@@ -4,7 +4,7 @@ import 'package:mercado_pago_integration/mercado_pago_integration.dart';
 import 'package:mercado_pago_integration/models/payment.dart';
 import 'package:winkels_customer/core/cubit/base_cubit.dart';
 import 'package:winkels_customer/core/cubit/base_state.dart';
-import 'package:winkels_customer/core/stripe/stripe_helper.dart';
+import 'package:winkels_customer/core/payment/payment_helper.dart';
 import 'package:winkels_customer/data/models/Order.dart';
 import 'package:winkels_customer/data/models/OrderDTO.dart';
 import 'package:winkels_customer/data/models/OrderProduct.dart';
@@ -29,7 +29,7 @@ class CheckoutCubit extends BaseCubit {
         'items': [
           {
             'title': 'Test Order',
-            'description': 'Description',
+            'description': 'Winkels order',
             'quantity': 1,
             'order_id': order.id.toString(),
             'unit_price': totalPrice.toInt(),
@@ -75,6 +75,9 @@ class CheckoutCubit extends BaseCubit {
       final res = await repository.updateOrder(OrderDTO.fromOrder(order));
       emit(BaseState(StateType.success, data: payment));
     } catch (e) {
+      // 4013 5406 8274 6260
+      // 4013 5406 8274 6260
+      // 5254 1336 7440 3564
       emit(BaseState(StateType.error));
     }
   }
@@ -84,8 +87,9 @@ class CheckoutCubit extends BaseCubit {
       OrderDTO(
         deliveryAddress: _preferences.getAddress().getFullAddress(),
         orderTotal: totalPrice,
+        orderStatus: ORDER_STATUS_STRING[OrderStatus.CREATED],
         deliveryFee: vendor.deliveryFee,
-        vendor: vendor.id.toString(),
+        vendor: '${vendor.id}',
         itemsTotal: itemsPrice,
         products: items.entries.map((e) {
           return OrderProduct(
