@@ -17,6 +17,7 @@ import 'ui/account/account_page.dart';
 import 'ui/cart/cart_model.dart';
 import 'ui/register/phone_number_page.dart';
 import 'ui/screens/change_password.dart';
+import 'ui/screens/test_widget_page.dart';
 import 'ui/utils/custom_widgets/successful_order_page.dart';
 
 Future<void> main() async {
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
+                '/test_widget_page': (BuildContext context) => TestWidgetPage(), //page test widgets
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;
