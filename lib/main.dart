@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
               title: 'Winkels',
               darkTheme: darkTheme,
               theme: lightTheme,
-              initialRoute: '/test_widget_page',
+              initialRoute: '/',
               routes: {
                 '/': (BuildContext context) => WelcomePage(),
                 '/phone_number': (BuildContext context) => PhoneNumberPage(),
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                 '/successful_order': (BuildContext context) => SuccessfulOrderPage(),
                 '/my_cart': (BuildContext context) => CartPage(),
                 '/account_page': (BuildContext context) => AccountPage(),
-                '/test_widget_page': (BuildContext context) => TestWidgetPage(),
+                '/test_widget_page': (BuildContext context) => TestWidgetPage(), //page test widgets
               },
               onGenerateRoute: (settings) {
                 Widget destinationRoute;
